@@ -7,6 +7,9 @@ class User(TypedDict):
     id: int
 
 
-async def add_user(user: User):
-    data = {"name": user.first_name, "tg_id": user.id}
-    db.collection("users").add(data)
+async def add_user(from_user: User):
+    id, first_name = from_user.id, from_user.first_name
+    user = db.collection("users").where("tg_id", "==", id).get()
+    if not user:
+        data = {"name": first_name, "tg_id": id}
+        db.collection("users").add(data)
