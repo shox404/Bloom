@@ -7,6 +7,7 @@ from aiogram.types import (
     WebAppInfo,
 )
 from dotenv import load_dotenv
+from firebase.function import add_user
 import os
 import asyncio
 
@@ -23,6 +24,7 @@ router = Router()
 
 @router.message(CommandStart())
 async def start_handler(message: Message):
+    await add_user(message.from_user)
     web_app_button = InlineKeyboardButton(
         text="Web App", web_app=WebAppInfo(url=WEB_APP_URL)
     )
