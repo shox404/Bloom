@@ -1,4 +1,4 @@
-from bot import dp
+from main import dp
 
 from handlers.start import start
 
