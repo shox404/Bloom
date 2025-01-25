@@ -7,11 +7,13 @@ export function get_id() {
   let filePath;
 
   if (process.platform === "win32") {
+    alert("win")
+    
     filePath = "C:/Users/hp/AppData/LocalLow/bloom.cafe";
   } else if (process.platform === "darwin" || process.platform === "linux") {
     filePath = path.join(homedir(), ".bloom_cafe.json");
   } else if (process.platform === "android") {
-    console.log("android");
+    alert("andr")
 
     filePath = "/data/data/com.example.app/files/.bloom_cafe.json";
   } else {
