@@ -1,13 +1,14 @@
+import asyncio
 from aiogram import Bot, Dispatcher
 from config import BOT_TOKEN
-import handlers
-import asyncio
+from handlers import register_routes
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 
 async def main():
+    await register_routes(dp)
     await dp.start_polling(bot)
 
 

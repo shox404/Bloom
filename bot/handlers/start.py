@@ -2,8 +2,8 @@ from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from firebase.function import add_user
-from keyboards import app_button
+from firebase.function import add_user, is_user_exist
+from keyboards.app_button import app_button
 from states.user import User
 from keyboards.user import location_request_button, phone_number_request_button
 
@@ -12,7 +12,7 @@ start = Router()
 
 @start.message(CommandStart())
 async def start_handler(message: Message, state: FSMContext):
-    user_exist = await add_user(message.from_user)
+    user_exist = await is_user_exist(message.from_user.id)
     print(f"User exist: {user_exist}")
 
     if user_exist:

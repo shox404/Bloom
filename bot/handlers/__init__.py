@@ -1,5 +1,7 @@
-from main import dp
+from aiogram import Dispatcher
 
 from handlers.start import start
 
-dp.include_router(start)
+
+async def register_routes(dp: Dispatcher):
+    dp.include_router(start)
