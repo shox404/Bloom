@@ -46,8 +46,10 @@ async def handle_phone_number(message: Message, state: FSMContext):
         await message.answer(
             text="Thank you! You can now access the web app.", reply_markup=app_button()
         )
-        print(state)
-        # save user here
+
+        state_data = await state.get_data()
+        await add_user(message, state_data)
+        
         await state.clear()
     else:
         await message.answer("Please use the button to share your phone number.")
