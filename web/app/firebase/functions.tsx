@@ -11,7 +11,9 @@ export function get_id() {
   } else if (process.platform === "darwin" || process.platform === "linux") {
     filePath = path.join(homedir(), ".bloom_cafe.json");
   } else if (process.platform === "android") {
-    filePath = "/data/data/com.example.app/files/.bloom_cafe.json"; // Adjust path for mobile
+    console.log("android");
+
+    filePath = "/data/data/com.example.app/files/.bloom_cafe.json";
   } else {
     throw new Error("Unsupported platform");
   }
@@ -19,7 +21,7 @@ export function get_id() {
   try {
     const id = readFileSync(filePath, "utf-8");
     return JSON.parse(id);
-  } catch (error) {
+  } catch {
     return null;
   }
 }
