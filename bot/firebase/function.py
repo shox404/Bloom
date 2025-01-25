@@ -9,8 +9,9 @@ class User(TypedDict):
 
 async def add_user(from_user: User):
     print(from_user)
-    id, first_name = from_user.id, from_user.first_name
+    id, first_name, username = from_user.id, from_user.first_name, from_user.username
+
     user = db.collection("users").where("tg_id", "==", id).get()
     if not user:
-        data = {"name": first_name, "tg_id": id}
+        data = {"name": first_name, "tg_data": {"id": id, "username": username}}
         db.collection("users").add(data)
