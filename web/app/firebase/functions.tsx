@@ -7,15 +7,11 @@ export function get_id() {
   let filePath;
 
   if (process.platform === "win32") {
-    console.log("win");
-    
-    filePath = "C:/Users/hp/AppData/LocalLow/bloom.cafe";
+    filePath = "C:/Users/hp/bloom.cafe";
   } else if (process.platform === "darwin" || process.platform === "linux") {
-    filePath = path.join(homedir(), ".bloom_cafe.json");
+    filePath = path.join(homedir(), "bloom.cafe");
   } else if (process.platform === "android") {
-    console.log("android");
-
-    filePath = "/data/data/com.example.app/files/.bloom_cafe.json";
+    filePath = "/data/data/com.example.app/files/bloom.cafe";
   } else {
     throw new Error("Unsupported platform");
   }
@@ -27,6 +23,7 @@ export function get_id() {
     return null;
   }
 }
+
 export async function get_user(id: number) {
   const query = await db
     .collection("users")
