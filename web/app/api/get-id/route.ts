@@ -1,6 +1,6 @@
+import path from 'path';
 import { readFileSync } from 'fs';
 import { NextResponse } from 'next/server';
-import path from 'path';
 import { homedir } from 'os';
 
 export async function GET() {
@@ -21,7 +21,7 @@ export async function GET() {
     // Read the file and parse the JSON content
     const id = readFileSync(filePath, "utf-8");
     return NextResponse.json(JSON.parse(id));
-  } catch (error) {
+  } catch {
     // Return error if the file reading fails
     return NextResponse.json({ error: "Unable to read or parse file" }, { status: 500 });
   }
