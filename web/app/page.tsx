@@ -1,16 +1,9 @@
 import Image from "next/image";
-import { get_id, get_user } from "./firebase/functions";
 
 export default function Home() {
-  const id: number = get_id();
-
-  get_user(id).then((user) => {
-    console.log(user);
-  });
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      {id}
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
