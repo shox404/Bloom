@@ -2,15 +2,18 @@
 
 import { FormEvent, useState } from "react";
 import { VerifyStyles } from "../styles/verify-styles";
-import { get_user } from "../firebase/functions";
+import { getUserByPhone } from "../firebase/functions";
+import { User } from "../types";
+import { sendOtp } from "../utils/tg-function";
 
 export default function Verify() {
-  const [state, setState] = useState("");
+  const [state, setState] = useState<string>("");
 
   const finish = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user = await get_user(state);
-    console.log(user);
+
+    const user = (await getUserByPhone(state)) as User;
+    await sendOtp(user.tg_data.id);
   };
 
   return (

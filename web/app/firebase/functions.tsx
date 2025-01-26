@@ -1,14 +1,16 @@
 import { db } from "./config";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
-export async function get_user(phone_number: number | string) {
-  const query = await db
-    .collection("users")
-    .where("phone_number", "==", phone_number)
-    .get();
+export const getUserByPhone = async (phoneNumber: string) => {
+  try {
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("phone_number", "==", phoneNumber));
+    const snapshot = await getDocs(q);
 
-  if (query.empty) return null;
+    if (snapshot.empty) return;
 
-  const doc = query.docs[0];
-
-  return { id: doc.id, ...doc.data() };
-}
+    return snapshot.docs[0].data();
+  } catch {
+    throw new Error("Error fetching user data from Firestore");
+  }
+};
