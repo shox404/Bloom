@@ -31,24 +31,21 @@ export const getUserByPhone = async (phoneNumber: string) => {
 
     if (snapshot.empty) return;
 
-    return snapshot.docs[0].data();
+    return { ...snapshot.docs[0].data(), id: snapshot.docs[0].id };
   } catch {
     throw new Error("Error fetching user data from Firestore");
   }
 };
 
 export const updateUserById = async (
-  userId: string,
+  userId: string | undefined,
   updatedData: Partial<User>
 ): Promise<void> => {
-  try {
+  if (userId) {
     const userRef = doc(db, "users", userId);
 
-    await updateDoc(userRef, updatedData);
+    delete updatedData.id;
 
-    console.log("User updated successfully");
-  } catch (error) {
-    console.error("Error updating user data:", error);
-    throw new Error("Error updating user data");
+    await updateDoc(userRef, updatedData);
   }
 };

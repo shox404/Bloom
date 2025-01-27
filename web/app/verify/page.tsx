@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { VerifyStyles } from "../styles/verify-styles";
-import { getUserById, getUserByPhone } from "../firebase/functions";
+import { getUserByPhone } from "../firebase/functions";
 import { User } from "../types";
 import { sendOtp } from "../utils/tg-function";
 
@@ -20,9 +20,6 @@ export default function Verify() {
   const otpFinish = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user = (await getUserByPhone(state)) as User;
-
-    alert(otp)
-    alert(user?.otp)
   };
 
   return (
