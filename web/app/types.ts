@@ -1,4 +1,6 @@
 export type User = {
+  id?: string;
+  otp?: string;
   location: {
     latitude: number;
     longitude: number;
