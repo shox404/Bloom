@@ -20,6 +20,7 @@ export default function Verify() {
   const otpFinish = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user = (await getUserByPhone(state)) as User;
+    console.log(user.otp);
   };
 
   return (
