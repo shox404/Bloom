@@ -16,19 +16,20 @@
   "devDependencies": {
     "@emotion/styled": "^11.14.0",
     "@eslint/eslintrc": "^3",
+    "@reduxjs/toolkit": "^2.5.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "axios": "^1.7.9",
     "eslint": "^9",
     "eslint-config-next": "15.1.5",
+    "firebase": "^11.2.0",
     "firebase-admin": "^13.0.2",
+    "jose": "^5.9.6",
     "postcss": "^8",
+    "react-redux": "^9.2.0",
     "server-only": "^0.0.1",
     "tailwindcss": "^3.4.1",
-    "@reduxjs/toolkit": "^2.5.1",
-    "firebase": "^11.2.0",
-    "react-redux": "^9.2.0",
     "typescript": "^5"
   }
 }

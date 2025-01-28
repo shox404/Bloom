@@ -10,7 +10,6 @@ export const sendOtp = async (user: User) => {
   const botToken = process.env.NEXT_PUBLIC_BOT_TOKEN;
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
   const otp = generateOtp();
-  console.log(user);
   
   const message = {
     chat_id: user?.tg_data?.id,

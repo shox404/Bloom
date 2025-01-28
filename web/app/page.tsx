@@ -5,8 +5,8 @@ import { getUser, useGetUserQuery } from "./lib/services/users";
 
 export default function Home() {
   useEffect(() => {
-    useGetUserQuery("id");
-  }, []);
+    // useGetUserQuery("id");
+  });
 
   return <main>hi</main>;
 }

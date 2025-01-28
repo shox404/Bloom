@@ -5,6 +5,7 @@ import { VerifyStyles } from "../styles/verify-styles";
 import { getUserByPhone } from "../firebase/functions";
 import { User } from "../types";
 import { sendOtp } from "../utils/tg-function";
+import { generateJwtToken } from "../utils/verify-token";
 
 export default function Verify() {
   const [state, setState] = useState<string>("");
@@ -20,7 +21,9 @@ export default function Verify() {
   const otpFinish = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user = (await getUserByPhone(state)) as User;
-    console.log(user.otp);
+    if (user.otp == otp) {
+      await generateJwtToken(user);
+    }
   };
 
   return (
