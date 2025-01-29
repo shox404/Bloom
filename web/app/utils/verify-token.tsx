@@ -1,15 +1,8 @@
 import { jwtVerify, SignJWT, JWTPayload } from "jose";
-
-export const getJwtSecretKey = (): string => {
-  const secret = process.env.JWT_SECRET;
-  if (!secret || secret.length === 0) {
-    throw new Error("The environment variable JWT_SECRET is not set.");
-  }
-  return secret;
-};
+import cookie from "cookie";
 
 export async function generateJwtToken(data: JWTPayload, expiresIn = "30d") {
-  const secretKey = new TextEncoder().encode(getJwtSecretKey());
+  const secretKey = new TextEncoder().encode("privatekeyuserdata");
   const token = await new SignJWT(data)
     .setProtectedHeader({ alg: "HS256" })
     .setExpirationTime(expiresIn)
@@ -22,7 +15,7 @@ export async function verifyJwtToken(token: string): Promise<any> {
   try {
     const verified = await jwtVerify(
       token,
-      new TextEncoder().encode(getJwtSecretKey())
+      new TextEncoder().encode("privatekeyuserdata")
     );
     return verified.payload;
   } catch (error) {
@@ -31,15 +24,21 @@ export async function verifyJwtToken(token: string): Promise<any> {
 }
 
 export function saveTokenInCookie(token: string, expiresIn: string): void {
-  const expirationDate = new Date();
   const days = parseInt(expiresIn.replace("d", ""), 10);
+  const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + days);
 
-  document.cookie = `user_token=${token}; expires=${expirationDate.toUTCString()}; path=/; secure; HttpOnly`;
+  const cookieString = cookie.serialize("user_token", token, {
+    expires: expirationDate,
+    path: "/",
+    secure: true,
+    httpOnly: true,
+  });
+
+  document.cookie = cookieString;
 }
 
 export function getTokenFromCookie(): string | null {
-  const cookies = document.cookie.split("; ");
-  const tokenCookie = cookies.find((cookie) => cookie.startsWith("user_token="));
-  return tokenCookie ? tokenCookie.split("=")[1] : null;
+  const cookies = cookie.parse(document.cookie);
+  return cookies["user_token"] || null;
 }

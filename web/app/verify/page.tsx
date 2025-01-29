@@ -6,10 +6,12 @@ import { getUserByPhone } from "../firebase/functions";
 import { User } from "../types";
 import { sendOtp } from "../utils/tg-function";
 import { generateJwtToken } from "../utils/verify-token";
+import { useVerifyUserMutation } from "../lib/services/users";
 
 export default function Verify() {
   const [state, setState] = useState<string>("");
   const [otp, setOtp] = useState<string>("");
+  const [verifyUser] = useVerifyUserMutation();
 
   const finish = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,7 +24,7 @@ export default function Verify() {
     e.preventDefault();
     const user = (await getUserByPhone(state)) as User;
     if (user.otp == otp) {
-      await generateJwtToken(user);
+      await verifyUser(user);
     }
   };
 
