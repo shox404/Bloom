@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getUserById } from "@/app/firebase/functions";
-import { secretKey } from "../global";
 import { cookies } from "next/headers";
+import { secretKey } from "../global";
 import jwt from "jsonwebtoken";
 
 export async function GET() {

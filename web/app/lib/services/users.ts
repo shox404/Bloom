@@ -3,8 +3,8 @@ import { api } from "../api";
 
 export const usersApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getUser: build.query<User, void>({
-      query: () => ({ url: "/users", method: "GET" }),
+    getUserByPhone: build.query<User, string>({
+      query: (data) => ({ url: `/users/${data}`, method: "GET" }),
     }),
     signUser: build.mutation<string, User>({
       query: (body) => ({ url: "/sign", method: "POST", body }),
@@ -12,6 +12,6 @@ export const usersApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetUserQuery, useSignUserMutation } = usersApi;
+export const { useGetUserByPhoneQuery, useSignUserMutation } = usersApi;
 
-export const { getUser, signUser } = usersApi.endpoints;
+export const { getUserByPhone, signUser } = usersApi.endpoints;

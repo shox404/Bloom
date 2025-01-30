@@ -23,8 +23,11 @@ export const getUserById = async (id: string) => {
   }
 };
 
-export const getUserByPhone = async (phoneNumber: string) => {
+export const getUserByPhone = async (data: string) => {
   try {
+    const phoneNumber = data.startsWith("998")
+      ? data.split(" ").join("")
+      : `998${data.split(" ").join("")}`;
     const usersRef = collection(db, "users");
     const q = query(usersRef, where("phone_number", "==", phoneNumber));
     const snapshot = await getDocs(q);
