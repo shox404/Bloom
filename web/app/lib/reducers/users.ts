@@ -16,6 +16,8 @@ const users = createSlice({
   extraReducers(builder) {
     builder.addMatcher(getUser.matchFulfilled, (state, { payload }) => {
       state.user = payload;
+      console.log(payload);
+      
     });
   },
 });

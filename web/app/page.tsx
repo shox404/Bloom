@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
-// import { getUser, useVerifyUserMutation } from "./lib/services/users";
+import { useGetUserQuery } from "./lib/services/users";
 
 export default function Home() {
-  // const useVerifyUserMutation();
-  useEffect(() => {
-  });
+
+  useGetUserQuery();
 
   return <main>hi</main>;
 }
