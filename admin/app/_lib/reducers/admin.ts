@@ -5,7 +5,7 @@ import {
   loginAdmin,
   getAdminData,
   editAdminData,
-} from "@/app/lib/services/admin";
+} from "@/app/_lib/services/admin";
 
 type State = { data: CurrentAdminData };
 

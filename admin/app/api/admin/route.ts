@@ -1,9 +1,9 @@
 import { AdminData } from "@/app/types";
 import { NextRequest, NextResponse } from "next/server";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "@/app/firebase/config";
+import { db } from "@/app/_firebase/config";
 import { cookies } from "next/headers";
-import { expires } from "@/app/utils/cookie";
+import { expires } from "@/app/_utils/cookie";
 import { verify } from "@/app/api/global";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Select } from "antd";
 
 export const AppForm = styled.form`
   width: 300px;
@@ -16,6 +17,16 @@ export const AppInput = styled.input<{ width?: string; text?: string }>`
   padding-inline: 10px;
   width: ${(p) => (p.width ? p.width : "100%")};
   text-align: ${(p) => (p.text ? p.text : "left")};
+`;
+
+export const AppSelect = styled(Select)<{ width?: string }>`
+  height: 40px;
+  width: 250px;
+  outline: none;
+  border: none;
+  border-radius: 18px;
+  padding-inline: 10px;
+  width: ${(p) => (p.width ? p.width : "100%")};
 `;
 
 export const AppButton = styled.button<{ width?: string }>`

@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { ReactNode, useEffect, useState } from "react";
 import { ConfigProvider, Flex, Popconfirm } from "antd";
-import { SideBar, Item, Content } from "@/app/styles/layout";
-import { Title } from "@/app/styles/texts";
+import { SideBar, Item, Content } from "@/app/_styles/layout";
+import { Title } from "@/app/_styles/texts";
 import { usePathname, useRouter } from "next/navigation";
-import { AppButton, IconButton } from "@/app/styles/form";
+import { AppButton, IconButton } from "@/app/_styles/form";
 import {
   AppstoreOutlined,
   ArrowLeftOutlined,
@@ -15,7 +15,7 @@ import {
   SettingOutlined,
   ShopOutlined,
 } from "@ant-design/icons";
-import { clearCookie, getCookie } from "@/app/utils/cookie";
+import { clearCookie, getCookie } from "@/app/_utils/cookie";
 
 const links = [
   {

@@ -1,19 +1,19 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useState } from "react";
-import { SignStyles } from "../styles/sign-styles";
+import { SignStyles } from "../_styles/sign-styles";
 import { getUserByPhone } from "../firebase/functions";
 import { User } from "../types";
-import { sendCode } from "../utils/tg-functions";
+import { sendCode } from "../_utils/tg-functions";
 import {
   useGetUserByPhoneQuery,
   useSignUserMutation,
-} from "../lib/services/users";
-import { AppButton, AppForm, AppInput } from "../styles/form";
-import { Addition, Label, OneLine } from "../styles/elements";
-import { formatCode, formatPhoneNumber } from "../utils/functions";
+} from "../_lib/services/users";
+import { AppButton, AppForm, AppInput } from "../_styles/form";
+import { Addition, Label, OneLine } from "../_styles/elements";
+import { formatCode, formatPhoneNumber } from "../_utils/functions";
 import { motion } from "framer-motion";
-import { useAppSelector } from "../lib/hooks";
+import { useAppSelector } from "../_lib/hooks";
 import { useRouter } from "next/navigation";
 
 type State = { phoneNumber: string; code: string; showCodeForm: boolean };

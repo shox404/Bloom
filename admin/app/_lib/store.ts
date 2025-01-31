@@ -1,10 +1,12 @@
-import admin from "@/app/lib/reducers/admin";
+import admin from "@/app/_lib/reducers/admin";
+import products from "@/app/_lib/reducers/products";
+import categories from "@/app/_lib/reducers/categories";
 import { configureStore } from "@reduxjs/toolkit";
 import { api } from "./api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
-  reducer: { [api.reducerPath]: api.reducer, admin },
+  reducer: { [api.reducerPath]: api.reducer, admin, products, categories },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
 });

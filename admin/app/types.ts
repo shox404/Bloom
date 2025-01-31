@@ -18,6 +18,16 @@ export type AdminData = {
   password: string;
 };
 
+export type Product = {
+  id?: string;
+  amount?: number;
+  image: string;
+  title: string;
+  price: number;
+  active: boolean;
+  category: string;
+};
+
 export type IncomingMessage = { msg: string };
 
 export type CurrentAdminData = { name: string; password?: string };
@@ -25,3 +35,5 @@ export type CurrentAdminData = { name: string; password?: string };
 export type PayloadMsg = { payload: IncomingMessage };
 
 export type Category = { id?: string; key: string };
+
+export type Detail = { name: string; value: any };

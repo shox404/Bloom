@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { expires } from "@/app/utils/cookie";
+import { expires } from "@/app/_utils/cookie";
 import { secretKey } from "../global";
 import jwt from "jsonwebtoken";
 

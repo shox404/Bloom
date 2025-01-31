@@ -1,15 +1,15 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { LoginStyle } from "../styles/login-styles";
-import { useLoginAdminMutation } from "../lib/services/admin";
-import { AppButton, AppForm, AppInput } from "../styles/form";
-import { Label } from "../styles/elements";
+import { LoginStyle } from "../_styles/login-styles";
+import { useLoginAdminMutation } from "../_lib/services/admin";
+import { AppButton, AppForm, AppInput } from "../_styles/form";
+import { Label } from "../_styles/elements";
 import { useRouter } from "next/navigation";
 import { AdminData } from "../types";
-import { errorMsg } from "../utils";
+import { errorMsg } from "../_utils";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Title } from "../styles/texts";
+import { Title } from "../_styles/texts";
 
 export default function Sign() {
   const [state, setState] = useState<AdminData>({ name: "", password: "" });
