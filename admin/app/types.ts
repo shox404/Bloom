@@ -12,3 +12,16 @@ export type User = {
     username: string;
   };
 };
+
+export type AdminData = {
+  name: string;
+  password: string;
+};
+
+export type IncomingMessage = { msg: string };
+
+export type CurrentAdminData = { name: string; password?: string };
+
+export type PayloadMsg = { payload: IncomingMessage };
+
+export type Category = { id?: string; key: string };

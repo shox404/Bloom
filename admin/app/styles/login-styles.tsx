@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const SignStyles = styled.div`
+export const LoginStyle = styled.div`
   height: 100dvh;
   width: 100%;
   background-color: #ffffff;

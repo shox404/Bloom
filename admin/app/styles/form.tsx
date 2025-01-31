@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const AppForm = styled.form`
   width: 300px;
-  background-color: #F3F2F3;
+  background-color: #f3f2f3;
   border-radius: 30px;
   padding: 20px;
 `;
@@ -29,6 +29,18 @@ export const AppButton = styled.button<{ width?: string }>`
   width: ${(p) => (p.width ? p.width : "100%")};
   border-radius: 18px;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   &:active {
+    transition-duration: 0.5s;
+    transform: scale(0.99);
   }
+`;
+
+export const IconButton = styled.button`
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
 `;
