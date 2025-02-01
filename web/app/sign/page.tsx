@@ -10,7 +10,6 @@ import { AppButton, AppForm, AppInput } from "../_styles/form";
 import { Addition, Label, OneLine } from "../_styles/elements";
 import { formatCode, formatPhoneNumber } from "../_utils/functions";
 import { motion } from "framer-motion";
-import { useAppSelector } from "../_lib/hooks";
 import { useRouter } from "next/navigation";
 
 type State = { phoneNumber: string; code: string; showCodeForm: boolean };
