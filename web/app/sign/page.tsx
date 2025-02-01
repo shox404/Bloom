@@ -21,7 +21,6 @@ export default function Sign() {
     code: "",
     showCodeForm: false,
   });
-  const { user } = useAppSelector((state) => state.users);
   const [signUser] = useSignUserMutation();
   const router = useRouter();
 
