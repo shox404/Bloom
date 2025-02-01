@@ -2,9 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getUserByPhone } from "../services/users";
 import { User } from "@/app/types";
 
-type State = { user: any };
+type State = { user: User };
 
-const initialState: State = { user: {} };
+const initialState: State = { user: {
+  location: {
+    latitude: 0,
+    longitude: 0
+  },
+  name: "",
+  phone_number: "",
+  tg_data: {
+    id: 0,
+    username: ""
+  }
+} };
 
 const users = createSlice({
   name: "users",
