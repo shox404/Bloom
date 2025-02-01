@@ -8,20 +8,16 @@ import { Block } from "./_styles/elements";
 
 export default function Home() {
   const divider = (array: Category[]) => {
-    const part = array.length / 2;
+    const part = Math.ceil(array.length / 2);
+
     const first = array.slice(0, part);
     const second = array.slice(part, array.length);
+
     return [first, second];
   };
 
   return (
     <Main>
-      {/* {products.map((product, index) => (
-        <Card key={index}>
-          <img src={product.image} alt="*" />
-          <Title className="title">{product.title}</Title>
-        </Card>
-      ))} */}
       {divider(categories).map((list, index) => (
         <Block key={index}>
           {list.map((item, index) => (

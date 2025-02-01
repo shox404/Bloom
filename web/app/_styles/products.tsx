@@ -5,14 +5,13 @@ export const Main = styled.main`
   min-height: 100dvh;
   padding: 10px;
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
   align-content: start;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
 `;
 
 export const Card = styled.div`
-  width: calc(50% - 5px);
+  width: 100%;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 2rem;
