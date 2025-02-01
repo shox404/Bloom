@@ -20,3 +20,9 @@ export const OneLine = styled.div`
   display: flex;
   gap: 10px;
 `;
+
+export const Block = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;

@@ -23,35 +23,35 @@ export default function Sign() {
   const [signUser] = useSignUserMutation();
   const router = useRouter();
 
-  const setPhoneNumber = (event: ChangeEvent<HTMLInputElement>) => {
-    setState((p) => ({
-      ...p,
-      phoneNumber: formatPhoneNumber(event.target.value),
+  const handleInputChange =
+    (field: "phoneNumber" | "code") =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const value =
+        field === "phoneNumber"
+          ? formatPhoneNumber(event.target.value)
+          : formatCode(event.target.value);
+      setState((prevState) => ({ ...prevState, [field]: value }));
+    };
+
+  const toggleCodeForm = () =>
+    setState((prevState) => ({
+      ...prevState,
+      showCodeForm: !prevState.showCodeForm,
     }));
-  };
 
-  const setDigitCode = (event: ChangeEvent<HTMLInputElement>) => {
-    setState((p) => ({ ...p, code: formatCode(event.target.value) }));
-  };
-
-  const toggleCodeForm = () => {
-    setState((e) => ({ ...e, showCodeForm: !e.showCodeForm }));
-  };
-
-  const sign = async (event: FormEvent<HTMLFormElement>) => {
+  const submitPhoneNumber = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user = (await getUserByPhone(state.phoneNumber)) as User;
     const answer = await sendCode(user);
     if (answer) toggleCodeForm();
   };
 
-  const checkCode = async (event: FormEvent<HTMLFormElement>) => {
+  const submitCode = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user = (await getUserByPhone(state.phoneNumber)) as User;
-    if (user.code == state.code.split(" ").join("")) {
-      await signUser(user).then(() => {
-        router.push("/");
-      });
+    if (user.code === state.code.split(" ").join("")) {
+      await signUser(user);
+      router.push("/");
     }
   };
 
@@ -61,7 +61,7 @@ export default function Sign() {
         animate={state.showCodeForm ? { scale: [1, 1.1, 0] } : {}}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
-        <AppForm onSubmit={sign}>
+        <AppForm onSubmit={submitPhoneNumber}>
           <Label htmlFor="phoneNumber">Phone Number</Label>
           <OneLine>
             <Addition>+998</Addition>
@@ -69,7 +69,7 @@ export default function Sign() {
               id="phoneNumber"
               text="center"
               maxLength={12}
-              onChange={setPhoneNumber}
+              onChange={handleInputChange("phoneNumber")}
               value={state.phoneNumber}
               required
             />
@@ -82,14 +82,14 @@ export default function Sign() {
         animate={state.showCodeForm ? { scale: [0, 1.1, 1] } : {}}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
-        <AppForm onSubmit={checkCode}>
-          <Label htmlFor="code">6 Digit Code.</Label>
+        <AppForm onSubmit={submitCode}>
+          <Label htmlFor="code">6 Digit Code</Label>
           <OneLine>
             <AppInput
               id="code"
               text="center"
               maxLength={7}
-              onChange={setDigitCode}
+              onChange={handleInputChange("code")}
               value={state.code}
               required
             />

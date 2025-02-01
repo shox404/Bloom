@@ -1,17 +1,19 @@
-export const formatPhoneNumber = (value: string) => {
+export const formatPhoneNumber = (value: string): string => {
+  if (!value) return "";
+
   const cleaned = value.replace(/\D/g, "");
-  const match = cleaned.match(/^(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})$/);
 
-  if (!match) return value;
+  const match = cleaned.match(/^(\d{1,2})(\d{1,3})(\d{1,2})(\d{1,2})$/);
 
-  return [match[1], match[2], match[3], match[4]].filter(Boolean).join(" ");
+  return match ? match.slice(1).filter(Boolean).join(" ") : value;
 };
 
-export const formatCode = (value: string) => {
+export const formatCode = (value: string): string => {
+  if (!value) return "";
+
   const cleaned = value.replace(/\D/g, "");
-  const match = cleaned.match(/^(\d{0,3})(\d{0,3})$/);
 
-  if (!match) return value;
+  const match = cleaned.match(/^(\d{1,3})(\d{1,3})$/);
 
-  return [match[1], match[2]].filter(Boolean).join(" ");
+  return match ? match.slice(1).filter(Boolean).join(" ") : value;
 };
