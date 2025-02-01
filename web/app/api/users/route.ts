@@ -1,5 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getUserById } from "@/app/firebase/functions";
+import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { secretKey } from "../global";
 import jwt from "jsonwebtoken";
@@ -20,7 +19,7 @@ export async function GET() {
       return NextResponse.json({ error: "Invalid token" }, { status: 403 });
 
     return NextResponse.json(decoded);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
