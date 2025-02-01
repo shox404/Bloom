@@ -2,13 +2,10 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import { SignStyles } from "../_styles/sign-styles";
-import { getUserByPhone } from "../firebase/functions";
+import { getUserByPhone } from "../_firebase/functions";
 import { User } from "../types";
 import { sendCode } from "../_utils/tg-functions";
-import {
-  useGetUserByPhoneQuery,
-  useSignUserMutation,
-} from "../_lib/services/users";
+import { useSignUserMutation } from "../_lib/services/users";
 import { AppButton, AppForm, AppInput } from "../_styles/form";
 import { Addition, Label, OneLine } from "../_styles/elements";
 import { formatCode, formatPhoneNumber } from "../_utils/functions";

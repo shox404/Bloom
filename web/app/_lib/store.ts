@@ -1,4 +1,4 @@
-import users from "@/app/lib/reducers/users";
+import users from "@/app/_lib/reducers/users";
 import { configureStore } from "@reduxjs/toolkit";
 import { api } from "./api";
 import { setupListeners } from "@reduxjs/toolkit/query";
