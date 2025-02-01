@@ -4,7 +4,7 @@ import { api } from "../api";
 export const usersApi = api.injectEndpoints({
   endpoints: (build) => ({
     getUserByPhone: build.query<User, string>({
-      query: (data) => ({ url: `/users/${data}`, method: "GET" }),
+      query: (body) => ({ url: "/users", method: "POST", body }),
     }),
     signUser: build.mutation<string, User>({
       query: (body) => ({ url: "/sign", method: "POST", body }),
