@@ -3,7 +3,6 @@ from aiogram import Bot, Dispatcher
 from config import BOT_TOKEN
 from handlers import register_routes
 from config import WEB_APP_URL
-import database.config
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
