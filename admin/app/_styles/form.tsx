@@ -10,7 +10,6 @@ export const AppForm = styled.form`
 
 export const AppInput = styled.input<{ width?: string; text?: string }>`
   height: 40px;
-  width: 250px;
   outline: none;
   border: none;
   border-radius: 18px;
@@ -21,12 +20,16 @@ export const AppInput = styled.input<{ width?: string; text?: string }>`
 
 export const AppSelect = styled(Select)<{ width?: string }>`
   height: 40px;
-  width: 250px;
-  outline: none;
-  border: none;
-  border-radius: 18px;
-  padding-inline: 10px;
   width: ${(p) => (p.width ? p.width : "100%")};
+  background-color: #f5f5f5;
+  .ant-select-selector {
+    outline: none;
+    border: none;
+    border-radius: 18px;
+    padding-inline: 10px;
+    font-size: 16px;
+    transition: 0.5s;
+  }
 `;
 
 export const AppButton = styled.button<{ width?: string }>`

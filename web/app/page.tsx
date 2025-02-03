@@ -5,6 +5,7 @@ import { Card, Main } from "./_styles/products";
 import { Title } from "./_styles/texts";
 import { Category } from "./types";
 import { Block } from "./_styles/elements";
+import { saveFile } from "./_appwrite/function";
 
 export default function Home() {
   const divider = (array: Category[]) => {

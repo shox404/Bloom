@@ -13,6 +13,7 @@ import { Form, message, Upload, UploadProps } from "antd";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, Fragment, useEffect } from "react";
 import { useGetCategoryQuery } from "@/app/_lib/services/categories";
+import { Label } from "../_styles/elements";
 
 const props: UploadProps = {
   name: "file",
@@ -103,6 +104,7 @@ export default function Create() {
         </Upload.Dragger>
         <br />
         <AppForm onSubmit={submit}>
+          <Label htmlFor="title">Title</Label>
           <AppInput
             id="title"
             name="title"
@@ -110,14 +112,16 @@ export default function Create() {
             value={product.title}
             required
           />
+          <Label htmlFor="category">Category</Label>
           <AppSelect
-            id="title"
+            id="category"
             options={categoryOptions(category)}
             onChange={(e) =>
               setValue({ target: { name: "category", value: e } })
             }
             value={product.category}
           />
+          <Label htmlFor="price">Price</Label>
           <AppInput
             id="price"
             name="price"
