@@ -1,10 +1,11 @@
 import users from "@/app/_lib/reducers/users";
+import products from "@/app/_lib/reducers/products";
 import { configureStore } from "@reduxjs/toolkit";
 import { api } from "./api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
-  reducer: { [api.reducerPath]: api.reducer, users },
+  reducer: { [api.reducerPath]: api.reducer, users, products },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
 });
