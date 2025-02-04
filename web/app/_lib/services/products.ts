@@ -1,15 +1,15 @@
-import { User } from "@/app/types";
+import { Product } from "@/app/types";
 import { api } from "../api";
 
 export const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<string, User[]>({
+    getProducts: build.query<string, Product[]>({
       query: () => ({ url: "/products", method: "GET" }),
     }),
-    getProduct: build.query<User, string>({
+    getProduct: build.query<Product, string>({
       query: (id) => ({ url: `/products/${id}`, method: "GET" }),
     }),
-    deleteProduct: build.mutation<string, User>({
+    deleteProduct: build.mutation<string, string | undefined>({
       query: (id) => ({ url: `/products/${id}`, method: "DELETE" }),
     }),
   }),

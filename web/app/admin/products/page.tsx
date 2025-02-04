@@ -34,7 +34,7 @@ export default function Products() {
   const { products } = useAppSelector((state) => state.products);
   const item = useGetProductQuery("d");
   const [search, setSearch] = useState("");
-  const [deleteItem, { error }] = useDeleteProductMutation();
+  const [deleteProduct, { error }] = useDeleteProductMutation();
 
   useEffect(() => errorMsg(error), [error]);
 
@@ -48,7 +48,7 @@ export default function Products() {
       },
       {
         label: (
-          <Popconfirm title="Delete?" onConfirm={() => deleteItem(data.id)}>
+          <Popconfirm title="Delete?" onConfirm={() => deleteProduct(data?.id)}>
             <Inline y="start">
               <div>
                 <DeleteOutlined /> Delete

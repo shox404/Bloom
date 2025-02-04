@@ -1,17 +1,17 @@
 import { Pie } from "@ant-design/plots";
 import { PieBox } from "@/app/_styles/admin/dashboard";
-import { useAppSelector } from "@/app/_store/hooks";
-import { useGetCategoryQuery } from "@/app/_store/services/category";
+import { useAppSelector } from "@/app/_lib/hooks";
+import { useGetCategoryQuery } from "@/app/_lib/services/category";
 
 export default function Products() {
   const {
-    items: { productsAmount },
+    products: { products },
   } = useAppSelector((state) => state);
 
   useGetCategoryQuery();
 
   const config = {
-    data: { value: productsAmount },
+    data: { value: products.length },
     angleField: "amount",
     colorField: "title",
     legend: false,
