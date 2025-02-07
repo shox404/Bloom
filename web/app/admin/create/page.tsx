@@ -1,9 +1,9 @@
 "use client";
 
 import FormItem from "@/app/_components/form-item";
-import { useAppDispatch, useAppSelector } from "@/app/_store/hooks";
-import { CLEAR_ITEM, EQUAL_ITEM } from "@/app/_store/reducers/items";
-import { useCreateItemMutation } from "@/app/_store/services/items";
+import { useAppDispatch, useAppSelector } from "@/app/_lib/hooks";
+import { CLEAR_PRODUCT, EQUAL_PRODUCT } from "@/app/_lib/reducers/products";
+import { useCreateProductMutation } from "@/app/_lib/services/products";
 import { Styles } from "@/app/_styles/admin/create";
 import {
   AppButton,
@@ -19,7 +19,8 @@ import { InboxOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Form, message, Upload, UploadProps } from "antd";
 import { useRouter } from "next/navigation";
 import { Fragment, useEffect } from "react";
-import { useGetCategoryQuery } from "@/app/_store/services/category";
+import { useGetCategoryQuery } from "@/app/_lib/services/category";
+import ImageUpload from "@/app/_components/uploader";
 
 const props: UploadProps = {
   name: "file",
@@ -32,10 +33,10 @@ const props: UploadProps = {
 export default function Create() {
   const dispatch = useAppDispatch();
   const {
-    items: { item },
+    products: { product },
     category: { category },
   } = useAppSelector((state) => state);
-  const [create, { isLoading, error }] = useCreateItemMutation();
+  const [create, { isLoading, error }] = useCreateProductMutation();
   const router = useRouter();
 
   useGetCategoryQuery();
@@ -43,33 +44,33 @@ export default function Create() {
   useEffect(() => errorMsg(error), [error]);
 
   const submit = async () => {
-    if (item.images !== undefined) {
-      await create(item)
-        .unwrap()
-        .then(() => {
-          router.push("/admin/products");
-          dispatch(CLEAR_ITEM());
-        });
-    } else {
-      message.warning("Please upload images");
-    }
+    // if (products.images !== undefined) {
+    //   await create(products)
+    //     .unwrap()
+    //     .then(() => {
+    //       router.push("/admin/products");
+    //       dispatch(CLEAR_PRODUCT());
+    //     });
+    // } else {
+    //   message.warning("Please upload images");
+    // }
   };
 
-  const setValue = (e: Detail) => dispatch(EQUAL_ITEM(e));
+  const setValue = (e: Detail) => dispatch(EQUAL_PRODUCT(e));
 
   const upload = (info: any) => {
-    const { status, name } = info.file;
-    if (status === "done") {
-      message.success(`${name} file uploaded successfully.`);
-      setValue({
-        key: "images",
-        value: info.fileList.map((e: any) => e.response),
-      });
-    } else if (status === "removed" && info.fileList.length < 1) {
-      setValue({ key: "images", value: undefined });
-    } else if (status === "error") {
-      message.error(`${name} file upload failed.`);
-    }
+    // const { status, name } = info.file;
+    // if (status === "done") {
+    //   message.success(`${name} file uploaded successfully.`);
+    //   setValue({
+    //     key: "images",
+    //     value: info.fileList.map((e: any) => e.response),
+    //   });
+    // } else if (status === "removed" && info.fileList.length < 1) {
+    //   setValue({ key: "images", value: undefined });
+    // } else if (status === "error") {
+    //   message.error(`${name} file upload failed.`);
+    // }
   };
 
   return (
@@ -79,12 +80,12 @@ export default function Create() {
       </Navbar>
       <Styles>
         <div className="content">
-          <Title>New item</Title>
+          <Title>New product</Title>
           <br />
-          <Upload.Dragger
+          {/* <Upload.Dragger
             {...props}
             onChange={upload}
-            defaultFileList={item.images}
+            defaultFileList={product.image}
           >
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
@@ -96,7 +97,8 @@ export default function Create() {
               Support for a single or bulk upload. Strictly prohibited from
               uploading company data or other banned files.
             </p>
-          </Upload.Dragger>
+          </Upload.Dragger> */}
+          <ImageUpload/>
           <br />
           <Form
             layout="vertical"
@@ -104,14 +106,14 @@ export default function Create() {
             onChange={({ target: { id, value } }: FormValue) =>
               setValue({ key: id, value })
             }
-            initialValues={item}
+            // initialValues={item}
           >
             <FormItem node={<AppInput />} name="title" />
             <FormItem
               node={
                 <AppSelect
                   options={categoryOptions(category)}
-                  onChange={(e) => setValue({ key: "category", value: e })}
+                  // onChange={(e) => setValue({ key: "category", value: e })}
                 />
               }
               name="category"
@@ -120,8 +122,6 @@ export default function Create() {
               node={<AppInput type="number" prefix="$" min={0} />}
               name="price"
             />
-            <FormItem node={<AppInput type="number" min={1} />} name="amount" />
-            <FormItem node={<AppTextArea />} name="description" />
             <FormItem
               node={
                 <AppButton disabled={isLoading}>

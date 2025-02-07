@@ -15,7 +15,7 @@ import { AdminData, Category, FormValue } from "@/app/global/types";
 import {
   useEditAdminDataMutation,
   useGetAdminDataQuery,
-} from "@/app/_store/services/admin";
+} from "@/app/_lib/services/admin";
 import { useEffect } from "react";
 import { errorMsg } from "@/app/global/utils";
 import {
@@ -23,14 +23,14 @@ import {
   EllipsisOutlined,
   LoadingOutlined,
 } from "@ant-design/icons";
-import { useAppDispatch, useAppSelector } from "@/app/_store/hooks";
-import { SET_VALUE } from "@/app/_store/reducers/admin";
+import { useAppDispatch, useAppSelector } from "@/app/_lib/hooks";
+import { SET_VALUE } from "@/app/_lib/reducers/admin";
 import {
   useCreateCategoryMutation,
   useDeleteCategoryMutation,
   useGetCategoryQuery,
-} from "@/app/_store/services/category";
-import { EMPTY_CATEGORY, SET_CATEGORY } from "@/app/_store/reducers/category";
+} from "@/app/_lib/services/category";
+import { EMPTY_CATEGORY, SET_CATEGORY } from "@/app/_lib/reducers/category";
 import CategoryEditor from "@/app/_drawers/category-editor";
 import DropItem from "@/app/_components/drop-item";
 

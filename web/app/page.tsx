@@ -5,7 +5,6 @@ import { Card, Main } from "./_styles/products";
 import { Title } from "./_styles/texts";
 import { Category } from "./types";
 import { Block } from "./_styles/elements";
-import { saveFile } from "./_appwrite/function";
 
 export default function Home() {
   const divider = (array: Category[]) => {
@@ -21,7 +20,7 @@ export default function Home() {
     <Main>
       {divider(categories).map((list, index) => (
         <Block key={index}>
-          {list.map((item, index) => (
+          {list?.map((item, index) => (
             <Card key={index}>
               <img src={item.image} alt="*" />
               <Title className="title">{item.name}</Title>

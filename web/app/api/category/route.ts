@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { reply } from "../utils";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase.config";
+import { db } from "@/app/_firebase/config";
 import { verify } from "@/app/api/utils";
 
 export async function GET() {

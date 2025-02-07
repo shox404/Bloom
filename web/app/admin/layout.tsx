@@ -69,7 +69,7 @@ export default function Admin({ children }: Props) {
   };
 
   return (
-    <Flex>
+    <Flex suppressHydrationWarning>
       <SideBar className={isSideBarOpen ? "open" : ""}>
         <Flex justify="space-between" align="center" className="header">
           <Link href="/admin">

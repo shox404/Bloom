@@ -3,22 +3,25 @@ import { api } from "../api";
 
 export const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<string, Product[]>({
+    getProduct: build.query<Product[], void>({
       query: () => ({ url: "/products", method: "GET" }),
     }),
-    getProduct: build.query<Product, string>({
-      query: (id) => ({ url: `/products/${id}`, method: "GET" }),
+    createProduct: build.mutation<Product, Product>({
+      query: (body) => ({ url: "/products", method: "POST", body }),
     }),
-    deleteProduct: build.mutation<string, string | undefined>({
-      query: (id) => ({ url: `/products/${id}`, method: "DELETE" }),
+    editProduct: build.mutation<Product, Product>({
+      query: (body) => ({ url: `/products/${body.id}`, method: "PUT", body }),
+    }),
+    deleteProduct: build.mutation<{ id: any }, { id: any }>({
+      query: (data) => ({ url: `/products/${data.id}`, method: "DELETE" }),
     }),
   }),
 });
 
 export const {
-  useGetProductsQuery,
-  useDeleteProductMutation,
+  useCreateProductMutation,
   useGetProductQuery,
+  useEditProductMutation,
+  useDeleteProductMutation,
 } = productsApi;
-
 export const { getProduct } = productsApi.endpoints;

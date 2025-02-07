@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { reply, verify } from "@/app/api/utils";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { db } from "@/firebase.config";
+import { db } from "@/app/_firebase/config";
 
 export async function PUT(
   request: NextRequest,

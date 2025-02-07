@@ -6,7 +6,7 @@ import { Styles } from "@/app/_styles/admin/login";
 import { Title } from "@/app/_styles/ui/text";
 import { AppButton, AppInput, AppPassword } from "@/app/_styles/ui/element";
 import { AdminData } from "@/app/global/types";
-import { useLoginAdminMutation } from "@/app/_store/services/admin";
+import { useLoginAdminMutation } from "@/app/_lib/services/admin";
 import { useEffect } from "react";
 import { errorMsg } from "@/app/global/utils";
 import { LoadingOutlined } from "@ant-design/icons";

@@ -15,9 +15,11 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@ant-design/plots": "^2.3.3",
     "@emotion/styled": "^11.14.0",
     "@eslint/eslintrc": "^3",
     "@reduxjs/toolkit": "^2.5.1",
+    "@types/bcrypt": "^5.0.2",
     "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.8",
     "@types/node": "^20",
@@ -25,6 +27,7 @@
     "@types/react-dom": "^19",
     "antd": "^5.23.3",
     "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
     "eslint": "^9",
     "eslint-config-next": "15.1.5",
     "firebase": "^11.2.0",
