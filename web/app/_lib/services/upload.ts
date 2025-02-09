@@ -1,12 +1,12 @@
-import { IncomingImageMessage, IncomingMessage } from "@/app/global/types";
+import { IncomingMessage } from "@/app/global/types";
 import { api } from "../api";
 
 export const adminApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    get: builder.query<IncomingImageMessage, string>({
+    getImage: builder.query<IncomingMessage, string>({
       query: (id) => ({ url: `/upload/${id}`, method: "GET" }),
     }),
-    upload: builder.mutation<IncomingImageMessage, FormData>({
+    upload: builder.mutation<IncomingMessage, FormData>({
       query: (body) => ({ url: "/upload", method: "POST", body }),
     }),
     delete: builder.mutation<IncomingMessage, string>({
@@ -15,6 +15,6 @@ export const adminApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetQuery, useUploadMutation, useDeleteMutation } = adminApi;
+export const { useGetImageQuery, useUploadMutation, useDeleteMutation } = adminApi;
 
 export const {} = adminApi.endpoints;

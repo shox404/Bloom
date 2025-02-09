@@ -9,7 +9,7 @@ export async function PUT(
 ) {
   await verify(request);
   const data = await request.json();
-  await updateDoc(doc(db, "items", id), data);
+  await updateDoc(doc(db, "products", id), data);
   return reply(data, 200);
 }
 
@@ -18,6 +18,6 @@ export async function DELETE(
   { params: { id } }: { params: { id: any } }
 ) {
   await verify(request);
-  await deleteDoc(doc(db, "items", id));
+  await deleteDoc(doc(db, "products", id));
   return reply({ id }, 200);
 }

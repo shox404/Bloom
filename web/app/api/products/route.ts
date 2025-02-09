@@ -6,7 +6,7 @@ import { verify } from "@/app/api/utils";
 
 export async function GET() {
   try {
-    const { docs } = await getDocs(collection(db, "items"));
+    const { docs } = await getDocs(collection(db, "products"));
     const data = docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     return reply(data, 200);
   } catch {
@@ -17,6 +17,11 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   await verify(request);
   const data = await request.json();
-  await addDoc(collection(db, "items"), { ...data, active: true });
-  return reply(data, 201);
+
+  const result = await addDoc(collection(db, "products"), {
+    ...data,
+    active: true,
+  });
+
+  return reply({ ...data, id: result.id }, 201);
 }

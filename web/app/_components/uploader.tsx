@@ -1,38 +1,45 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import type { InputRef } from "antd";
 import { AppButton, AppInput, AppUpload } from "../_styles/form";
 import { AppImagePreview } from "../_styles/elements";
 import {
   useDeleteMutation,
-  useGetQuery,
+  useGetImageQuery,
   useUploadMutation,
 } from "../_lib/services/upload";
-import { ImageType } from "../global/types";
+import UploadImage from "../_assets/upload.png";
 
-export default function ImageUpload() {
-  const [image, setImage] = useState<ImageType>({
-    id: "",
-    url: "",
-  });
+interface Props {
+  imageData: (image: string) => void;
+  initial: string;
+}
+
+export default function ImageUpload({ imageData, initial }: Props) {
   const fileInputRef = useRef<InputRef | HTMLInputElement | null>(null);
+  const [image, setImage] = useState<string>("");
   const [upload] = useUploadMutation();
   const [deleteImage] = useDeleteMutation();
-  const [inputKey, setInputKey] = useState(Date.now());
+
+  const queryId = image || initial;
+  const { data } = useGetImageQuery(queryId, { skip: !queryId });
 
   const postImage = async (formData: FormData) => {
-    const response = await upload(formData);
-    if (response.data) {
-      console.log(response.data.msg);
-      setImage(response.data.msg);
-    }
-  };
+    try {
+      if (image) {
+        await deleteImage(image);
+        setImage("");
+        imageData("");
+        resetFileInput();
+      }
 
-  const removeImage = async (id: string) => {
-    await deleteImage(id);
-    setImage({
-      id: "",
-      url: "",
-    });
+      const response = await upload(formData);
+      if (response.data?.msg) {
+        imageData(response.data.msg);
+        setImage(response.data.msg);
+      }
+    } catch (error) {
+      console.error("Image upload failed:", error);
+    }
   };
 
   const handleFileChange = async (
@@ -42,17 +49,11 @@ export default function ImageUpload() {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      postImage(formData);
+      await postImage(formData);
     }
   };
 
-  const handleDelete = () => {
-    removeImage(image.id);
-    setImage({
-      id: "",
-      url: "",
-    });
-
+  const resetFileInput = () => {
     if (fileInputRef.current) {
       const inputElement = fileInputRef.current as HTMLInputElement;
       inputElement.value = "";
@@ -60,32 +61,28 @@ export default function ImageUpload() {
     }
   };
 
-  const handleReupload = () => {
-    if (fileInputRef.current) {
-      if ("input" in fileInputRef.current && fileInputRef.current.input) {
-        fileInputRef.current.input.click();
-      } else {
-        (fileInputRef.current as HTMLInputElement).click();
+  const handleUploadClick = () => {
+    const { current } = fileInputRef;
+    if (current) {
+      if ("click" in current) {
+        (current as HTMLInputElement).click();
+      } else if ("input" in current && current.input) {
+        current.input.click();
       }
     }
   };
 
   return (
-    <AppUpload>
+    <AppUpload htmlFor="uploader">
       <AppInput
-        key={inputKey}
         type="file"
         accept="image/*"
         ref={fileInputRef as any}
         onChange={handleFileChange}
+        id="uploader"
       />
-      {image.url ? (
-        <>
-          <AppImagePreview src={image.url} alt="Uploaded" />
-          <AppButton onClick={handleDelete}>Delete</AppButton>
-        </>
-      ) : null}
-      <AppButton onClick={handleReupload}>Upload Image</AppButton>
+      {queryId && data?.msg && <AppImagePreview src={data.msg} alt="*" />}
+      <AppImagePreview src={UploadImage.src} alt="*" />
     </AppUpload>
   );
 }

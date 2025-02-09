@@ -63,7 +63,7 @@ export const Content = styled.div`
   background-color: #f0f0f0;
   color: #181818;
   width: 100%;
-  padding: 15px;
+  padding: 20px;
   transition: 0.5s;
   min-height: 100dvh;
   &.open {

@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Input, Select } from "antd";
 
 export const Label = styled.label`
   font-size: 13px;
@@ -30,14 +29,13 @@ export const Block = styled.div`
 
 export const AppImagePreview = styled.img`
   width: 100%;
-  height: auto;
-  max-height: 200px;
-  border-radius: 5px;
+  max-height: calc(200px - 10px);
+  border-radius: 6px;
+  object-fit: cover;
 `;
 
 export const Navbar = styled.nav`
-  padding: 30px;
-  margin-inline: 20px;
+  padding: 25px;
   border-radius: 20px;
   height: 70px;
   background-color: #fff;

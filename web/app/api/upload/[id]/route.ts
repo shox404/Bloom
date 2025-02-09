@@ -1,16 +1,20 @@
 import { storage } from "@/app/_appwrite/config";
 import { reply } from "../../utils";
-import { deleteDoc, doc, getDoc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/app/_firebase/config";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function GET(
   _request: NextRequest,
   { params: { id } }: { params: { id: string } }
 ) {
-  try {
-    const data = await getDoc(doc(db, "images", id));
-    return NextResponse.redirect(data.data()?.url);
+  try { 
+    const bucketId = "679f09690013e0e294d5";
+  
+    const uploadedFile = await storage.getFile(bucketId, id);
+    const url = storage.getFileView(bucketId, uploadedFile.$id);
+    
+    return reply({ msg: url }, 200);
   } catch (error) {
     return reply({ msg: "File not found" }, 404);
   }

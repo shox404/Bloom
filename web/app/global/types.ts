@@ -25,7 +25,3 @@ export type Detail = { key: string; value: any };
 export type FormValue = ChangeEvent<HTMLFormElement>;
 
 export type Category = { id?: string; key: string };
-
-export type IncomingImageMessage = { msg: ImageType };
-
-export type ImageType = { id: string; url: string };

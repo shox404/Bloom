@@ -9,21 +9,13 @@ import { Navbar } from "@/app/_styles/elements";
 import { AppButton, AppInput, AppSelect } from "@/app/_styles/form";
 import { Text, Title } from "@/app/_styles/texts";
 import { Detail, FormValue } from "@/app/global/types";
-import { categoryOptions, errorMsg } from "@/app/global/utils";
-import { InboxOutlined, LoadingOutlined } from "@ant-design/icons";
-import { Form, message, Upload, UploadProps } from "antd";
+import { categoryOptions } from "@/app/global/utils";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Flex, Form, message } from "antd";
 import { useRouter } from "next/navigation";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { useGetCategoryQuery } from "@/app/_lib/services/category";
 import ImageUpload from "@/app/_components/uploader";
-
-const props: UploadProps = {
-  name: "file",
-  multiple: true,
-  action: "/api/upload/items",
-  maxCount: 3,
-  listType: "picture",
-};
 
 export default function Create() {
   const dispatch = useAppDispatch();
@@ -31,41 +23,28 @@ export default function Create() {
     products: { product },
     category: { category },
   } = useAppSelector((state) => state);
-  const [create, { isLoading, error }] = useCreateProductMutation();
+  const [create, { isLoading }] = useCreateProductMutation();
   const router = useRouter();
 
   useGetCategoryQuery();
 
-  useEffect(() => errorMsg(error), [error]);
-
   const submit = async () => {
-    // if (products.images !== undefined) {
-    //   await create(products)
-    //     .unwrap()
-    //     .then(() => {
-    //       router.push("/admin/products");
-    //       dispatch(CLEAR_PRODUCT());
-    //     });
-    // } else {
-    //   message.warning("Please upload images");
-    // }
+    if (product.image !== "") {
+      await create(product)
+        .unwrap()
+        .then(() => {
+          router.push("/admin/products");
+          dispatch(CLEAR_PRODUCT());
+        });
+    } else {
+      message.warning("Please upload images");
+    }
   };
 
   const setValue = (e: Detail) => dispatch(EQUAL_PRODUCT(e));
 
-  const upload = (info: any) => {
-    // const { status, name } = info.file;
-    // if (status === "done") {
-    //   message.success(`${name} file uploaded successfully.`);
-    //   setValue({
-    //     key: "images",
-    //     value: info.fileList.map((e: any) => e.response),
-    //   });
-    // } else if (status === "removed" && info.fileList.length < 1) {
-    //   setValue({ key: "images", value: undefined });
-    // } else if (status === "error") {
-    //   message.error(`${name} file upload failed.`);
-    // }
+  const imageData = (image: string) => {
+    setValue({ key: "image", value: image });
   };
 
   return (
@@ -75,32 +54,33 @@ export default function Create() {
       </Navbar>
       <Styles>
         <div className="content">
-          <Title>New product</Title>
-          <br />
-          <ImageUpload />
-          <br />
           <Form
             layout="vertical"
             onFinish={submit}
             onChange={({ target: { id, value } }: FormValue) =>
               setValue({ key: id, value })
             }
-            // initialValues={item}
+            initialValues={product}
           >
-            <FormItem node={<AppInput />} name="title" />
-            <FormItem
-              node={
-                <AppSelect
-                  options={categoryOptions(category)}
-                  // onChange={(e) => setValue({ key: "category", value: e })}
+            <Flex>
+              <ImageUpload imageData={imageData} initial={product.image} />
+              <Flex vertical className="inputs">
+                <FormItem node={<AppInput />} name="title" />
+                <FormItem
+                  node={
+                    <AppSelect
+                      options={categoryOptions(category)}
+                      onChange={(e) => setValue({ key: "category", value: e })}
+                    />
+                  }
+                  name="category"
                 />
-              }
-              name="category"
-            />
-            <FormItem
-              node={<AppInput type="number" prefix="$" min={0} />}
-              name="price"
-            />
+                <FormItem
+                  node={<AppInput type="number" prefix="$" min={0} />}
+                  name="price"
+                />
+              </Flex>
+            </Flex>
             <FormItem
               node={
                 <AppButton disabled={isLoading}>

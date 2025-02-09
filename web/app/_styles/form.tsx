@@ -39,19 +39,19 @@ export const AppSelect = styled(Select)`
   }
 `;
 
-export const AppUpload = styled.div`
+export const AppUpload = styled.label`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding: 20px;
+  padding: 3px;
   border: 2px dashed #ccc;
   border-radius: 10px;
-  width: 300px;
-  min-height: 200px;
+  width: 350px;
   text-align: center;
+  margin-block: 10px;
   input {
-    display: none;
+    display: none !important;
   }
 `;
 
