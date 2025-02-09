@@ -1,6 +1,6 @@
 import { Flex } from "antd";
 import React from "react";
-import { AppButton } from "../_styles/ui/element";
+import { AppButton } from "../_styles/form";
 import { LoadingOutlined } from "@ant-design/icons";
 
 interface Props {

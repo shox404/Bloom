@@ -3,8 +3,8 @@
 import FormItem from "@/app/_components/form-item";
 import { Form } from "antd";
 import { Styles } from "@/app/_styles/admin/login";
-import { Title } from "@/app/_styles/ui/text";
-import { AppButton, AppInput, AppPassword } from "@/app/_styles/ui/element";
+import { Title } from "@/app/_styles/texts";
+import { AppButton, AppInput, AppPassword } from "@/app/_styles/form";
 import { AdminData } from "@/app/global/types";
 import { useLoginAdminMutation } from "@/app/_lib/services/admin";
 import { useEffect } from "react";

@@ -5,14 +5,9 @@ import { useAppDispatch, useAppSelector } from "@/app/_lib/hooks";
 import { CLEAR_PRODUCT, EQUAL_PRODUCT } from "@/app/_lib/reducers/products";
 import { useCreateProductMutation } from "@/app/_lib/services/products";
 import { Styles } from "@/app/_styles/admin/create";
-import {
-  AppButton,
-  AppInput,
-  AppSelect,
-  AppTextArea,
-  Navbar,
-} from "@/app/_styles/ui/element";
-import { Text, Title } from "@/app/_styles/ui/text";
+import { Navbar } from "@/app/_styles/elements";
+import { AppButton, AppInput, AppSelect } from "@/app/_styles/form";
+import { Text, Title } from "@/app/_styles/texts";
 import { Detail, FormValue } from "@/app/global/types";
 import { categoryOptions, errorMsg } from "@/app/global/utils";
 import { InboxOutlined, LoadingOutlined } from "@ant-design/icons";
@@ -82,23 +77,7 @@ export default function Create() {
         <div className="content">
           <Title>New product</Title>
           <br />
-          {/* <Upload.Dragger
-            {...props}
-            onChange={upload}
-            defaultFileList={product.image}
-          >
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">
-              Click or drag file to this area to upload
-            </p>
-            <p className="ant-upload-hint">
-              Support for a single or bulk upload. Strictly prohibited from
-              uploading company data or other banned files.
-            </p>
-          </Upload.Dragger> */}
-          <ImageUpload/>
+          <ImageUpload />
           <br />
           <Form
             layout="vertical"

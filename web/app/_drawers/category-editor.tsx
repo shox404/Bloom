@@ -1,7 +1,7 @@
 import { Form, Modal } from "antd";
 import { Fragment, useEffect, useState } from "react";
 import { EditFilled } from "@ant-design/icons";
-import { AppInput } from "../_styles/ui/element";
+import { AppInput } from "../_styles/form";
 import { Category } from "../global/types";
 import { useEditCategoryMutation } from "../_store/services/category";
 import { errorMsg } from "../global/utils";

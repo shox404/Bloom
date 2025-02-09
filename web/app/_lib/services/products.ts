@@ -24,4 +24,5 @@ export const {
   useEditProductMutation,
   useDeleteProductMutation,
 } = productsApi;
-export const { getProduct } = productsApi.endpoints;
+export const { getProduct, createProduct, editProduct, deleteProduct } =
+  productsApi.endpoints;

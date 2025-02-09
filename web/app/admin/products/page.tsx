@@ -7,14 +7,9 @@ import {
   useGetProductQuery,
 } from "@/app/_lib/services/products";
 import { Styles } from "@/app/_styles/admin/products";
-import {
-  AppButton,
-  AppInput,
-  Br,
-  Inline,
-  Navbar,
-} from "@/app/_styles/ui/element";
-import { Text, Title } from "@/app/_styles/ui/text";
+import { AppButton, AppInput } from "@/app/_styles/form";
+import { Br, Inline, Navbar } from "@/app/_styles/elements";
+import { Text, Title } from "@/app/_styles/texts";
 import { Product } from "@/app/types";
 import {
   DeleteOutlined,
@@ -32,7 +27,7 @@ import ItemEditor from "@/app/_drawers/item-editor";
 
 export default function Products() {
   const { products } = useAppSelector((state) => state.products);
-  const item = useGetProductQuery("d");
+  // const item = useGetProductQuery("d");
   const [search, setSearch] = useState("");
   const [deleteProduct, { error }] = useDeleteProductMutation();
 
@@ -48,7 +43,8 @@ export default function Products() {
       },
       {
         label: (
-          <Popconfirm title="Delete?" onConfirm={() => deleteProduct(data?.id)}>
+          // deleteProduct(data?.id)
+          <Popconfirm title="Delete?" onConfirm={() => null}>
             <Inline y="start">
               <div>
                 <DeleteOutlined /> Delete
@@ -69,14 +65,14 @@ export default function Products() {
   const goCreate = () => router.push("/admin/create");
 
   return (
-    <Loader is={item.isLoading}>
+    // item.isLoading
+    <Loader is={false}>
       <Navbar>
         <Text>Products</Text>
         <Flex gap={10} className="line">
           <AppInput
             prefix={<SearchOutlined />}
             placeholder="Search"
-            width={200}
             onChange={useSearch}
             className="input"
           />

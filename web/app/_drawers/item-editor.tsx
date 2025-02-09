@@ -1,10 +1,10 @@
 "use client";
 
 import FormItem from "@/app/_components/form-item";
-import { useAppDispatch, useAppSelector } from "@/app/_store/hooks";
-import { SET_EDIT, EQUAL_EDIT } from "@/app/_store/reducers/items";
-import { useEditItemMutation } from "@/app/_store/services/items";
-import { AppInput, AppSelect, AppTextArea } from "@/app/_styles/ui/element";
+import { useAppDispatch, useAppSelector } from "@/app/_lib/hooks";
+import { SET_EDIT, EQUAL_EDIT } from "@/app/_lib/reducers/products";
+import { useEditProductMutation } from "@/app/_lib/services/products";
+import { AppInput, AppSelect } from "@/app/_styles/form";
 import { Detail, FormValue, Item } from "@/app/global/types";
 import { errorMsg, categoryOptions } from "@/app/global/utils";
 import { EditFilled, InboxOutlined } from "@ant-design/icons";
@@ -19,18 +19,18 @@ import DropItem from "../_components/drop-item";
 const uploadProps: UploadProps = {
   name: "file",
   multiple: true,
-  action: "/api/upload/items",
+  action: "/api/upload/products",
   maxCount: 3,
   listType: "picture",
 };
 
 export default function ItemEditor({ data }: { data: Product }) {
   const [visible, setVisible] = useState(false);
-  const [editItem, { isLoading, error }] = useEditItemMutation();
+  const [editItem, { isLoading, error }] = useEditProductMutation();
   const dispatch = useAppDispatch();
   const router = useRouter();
   const {
-    items: { edit },
+    products: { editProduct },
     category: { category },
   } = useAppSelector((state) => state);
 
@@ -44,8 +44,8 @@ export default function ItemEditor({ data }: { data: Product }) {
   const toggle = () => setVisible(!visible);
 
   const submit = async () => {
-    if (edit.images !== undefined) {
-      await editItem(edit)
+    if (editProduct.image !== undefined) {
+      await editItem(editProduct)
         .unwrap()
         .then(() => {
           router.push("/admin/products");
@@ -85,10 +85,10 @@ export default function ItemEditor({ data }: { data: Product }) {
         open={visible}
         footer={<FormFooter act={submit} hide={toggle} loading={isLoading} />}
       >
-        <Upload.Dragger
+        {/* <Upload.Dragger
           {...uploadProps}
           onChange={upload}
-          defaultFileList={edit.images}
+          defaultFileList={editProduct.image}
         >
           <p className="ant-upload-drag-icon">
             <InboxOutlined />
@@ -100,7 +100,7 @@ export default function ItemEditor({ data }: { data: Product }) {
             Support for a single or bulk upload. Strictly prohibited from
             uploading company data or other banned files.
           </p>
-        </Upload.Dragger>
+        </Upload.Dragger> */}
         <br />
         <Form
           layout="vertical"
@@ -108,7 +108,7 @@ export default function ItemEditor({ data }: { data: Product }) {
           onChange={({ target: { id, value } }: FormValue) =>
             setValue({ key: id, value })
           }
-          initialValues={edit}
+          initialValues={editProduct}
         >
           <FormItem node={<AppInput />} name="title" />
           <FormItem

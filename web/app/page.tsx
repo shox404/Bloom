@@ -1,6 +1,5 @@
 "use client";
 
-import categories from "@/app/_database/categories.json";
 import { Card, Main } from "./_styles/products";
 import { Title } from "./_styles/texts";
 import { Category } from "./types";
@@ -18,7 +17,7 @@ export default function Home() {
 
   return (
     <Main>
-      {divider(categories).map((list, index) => (
+      {/* {divider(categories).map((list, index) => (
         <Block key={index}>
           {list?.map((item, index) => (
             <Card key={index}>
@@ -27,7 +26,7 @@ export default function Home() {
             </Card>
           ))}
         </Block>
-      ))}
+      ))} */}
     </Main>
   );
 }

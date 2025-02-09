@@ -4,9 +4,9 @@ import Link from "next/link";
 import { ReactNode, useEffect, useState } from "react";
 import { Flex, Popconfirm } from "antd";
 import { SideBar, Item, Content } from "@/app/_styles/admin/_layout";
-import { Title } from "@/app/_styles/ui/text";
+import { Title } from "@/app/_styles/texts";
 import { usePathname, useRouter } from "next/navigation";
-import { AppButton, IconButton } from "@/app/_styles/ui/element";
+import { AppButton, AppIconButton } from "@/app/_styles/form";
 import {
   AppstoreOutlined,
   ArrowLeftOutlined,
@@ -75,9 +75,9 @@ export default function Admin({ children }: Props) {
           <Link href="/admin">
             <Title>E Shop</Title>
           </Link>
-          <IconButton onClick={toggleSideBar} className="handler">
+          <AppIconButton onClick={toggleSideBar} className="handler">
             <ArrowLeftOutlined />
-          </IconButton>
+          </AppIconButton>
         </Flex>
         <Flex vertical gap={20} justify="space-between" className="items">
           <Flex vertical gap={10}>

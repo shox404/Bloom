@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Product } from "@/app/types";
 import { Detail } from "@/app/global/types";
+import {
+  createProduct,
+  deleteProduct,
+  editProduct,
+  getProduct,
+} from "../services/products";
 
 type State = { product: Product; editProduct: Product; products: Product[] };
 
@@ -41,12 +47,26 @@ const products = createSlice({
     },
   },
   extraReducers(builder) {
-    // builder.addMatcher(
-    //   getUserByPhone.matchFulfilled,
-    //   (state, { payload }: { payload: Product }) => {
-    //     state.user = payload;
-    //   }
-    // );
+    builder
+      .addMatcher(createProduct.matchFulfilled, (state, { payload }) => {
+        state.products.push(payload);
+      })
+      .addMatcher(getProduct.matchFulfilled, (state, { payload }) => {
+        state.products = payload;
+
+        const ctg = Array.from(new Set(payload.map((e) => e.category)));
+      })
+      .addMatcher(editProduct.matchFulfilled, (state, { payload }) => {
+        state.products.map((product, index) => {
+          if (payload.id == product.id)
+            state.products.splice(index, 1, payload);
+        });
+      })
+      .addMatcher(deleteProduct.matchFulfilled, (state, { payload }) => {
+        state.products.map((item, index) => {
+          if (payload.id == item.id) state.products.splice(index, 1);
+        });
+      });
   },
 });
 

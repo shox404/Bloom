@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Inline } from "../_styles/ui/element";
+import { Inline } from "../_styles/elements";
 
 interface Props {
   children: ReactNode;
