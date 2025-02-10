@@ -4,7 +4,7 @@ import FormItem from "@/app/_components/form-item";
 import { useAppDispatch, useAppSelector } from "@/app/_lib/hooks";
 import { SET_EDIT, EQUAL_EDIT } from "@/app/_lib/reducers/products";
 import { useEditProductMutation } from "@/app/_lib/services/products";
-import { AppInput, AppSelect } from "@/app/_styles/form";
+import { AppInput, AppSelect, AppTextArea } from "@/app/_styles/form";
 import { Detail, FormValue, Item } from "@/app/global/types";
 import { errorMsg, categoryOptions } from "@/app/global/utils";
 import { EditFilled, InboxOutlined } from "@ant-design/icons";
@@ -15,14 +15,6 @@ import { useGetCategoryQuery } from "@/app/_lib/services/category";
 import { Product } from "../types";
 import FormFooter from "@/app/_components/form-footer";
 import DropItem from "../_components/drop-item";
-
-const uploadProps: UploadProps = {
-  name: "file",
-  multiple: true,
-  action: "/api/upload/products",
-  maxCount: 3,
-  listType: "picture",
-};
 
 export default function ItemEditor({ data }: { data: Product }) {
   const [visible, setVisible] = useState(false);
@@ -39,6 +31,7 @@ export default function ItemEditor({ data }: { data: Product }) {
   useEffect(() => {
     dispatch(SET_EDIT(data));
   }, [data]);
+
   useEffect(() => errorMsg(error), [error]);
 
   const toggle = () => setVisible(!visible);
@@ -58,21 +51,6 @@ export default function ItemEditor({ data }: { data: Product }) {
   };
 
   const setValue = (e: Detail) => dispatch(EQUAL_EDIT(e));
-
-  const upload = (info: any) => {
-    const { status, name } = info.file;
-    if (status === "done") {
-      message.success(`${name} file uploaded successfully.`);
-      setValue({
-        key: "images",
-        value: info.fileList.map((e: any) => e.response),
-      });
-    } else if (status === "removed" && info.fileList.length < 1) {
-      setValue({ key: "images", value: undefined });
-    } else if (status === "error") {
-      message.error(`${name} file upload failed.`);
-    }
-  };
 
   return (
     <Fragment>

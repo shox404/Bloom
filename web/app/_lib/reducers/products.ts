@@ -48,13 +48,11 @@ const products = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addMatcher(createProduct.matchFulfilled, (state, { payload }) => {
-        state.products.push(payload);
-      })
       .addMatcher(getProduct.matchFulfilled, (state, { payload }) => {
         state.products = payload;
-
-        const ctg = Array.from(new Set(payload.map((e) => e.category)));
+      })
+      .addMatcher(createProduct.matchFulfilled, (state, { payload }) => {
+        state.products.push(payload);
       })
       .addMatcher(editProduct.matchFulfilled, (state, { payload }) => {
         state.products.map((product, index) => {

@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Styles = styled.div`
   padding: 20px;
-  height: 100%;
   .boxes {
     display: flex;
     flex-wrap: wrap;
@@ -49,5 +48,5 @@ export const PieBox = styled.div`
   border-radius: 20px;
   @media screen and (max-width: 480px) {
     width: 100%;
-}
+  }
 `;

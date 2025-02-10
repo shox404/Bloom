@@ -22,14 +22,17 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { errorMsg, format } from "@/app/global/utils";
 import { useRouter } from "next/navigation";
+import { useGetImageQuery } from "@/app/_lib/services/upload";
 import Tooltip from "@/app/_components/tooltip";
 import ItemEditor from "@/app/_drawers/item-editor";
+import AppImage from "@/app/_components/image";
 
 export default function Products() {
   const { products } = useAppSelector((state) => state.products);
-  // const item = useGetProductQuery("d");
   const [search, setSearch] = useState("");
   const [deleteProduct, { error }] = useDeleteProductMutation();
+
+  useGetProductQuery();
 
   useEffect(() => errorMsg(error), [error]);
 
@@ -45,12 +48,12 @@ export default function Products() {
         label: (
           // deleteProduct(data?.id)
           <Popconfirm title="Delete?" onConfirm={() => null}>
-            <Inline y="start">
-              <div>
-                <DeleteOutlined /> Delete
-              </div>
-              .
-            </Inline>
+            {/* <Inline y="start"> */}
+            <div>
+              <DeleteOutlined /> Delete
+            </div>
+            {/* . */}
+            {/* </Inline> */}
           </Popconfirm>
         ),
         key: "1",
@@ -97,7 +100,7 @@ export default function Products() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="images">
-                  <Image src={product.image} className="image" />
+                  <AppImage image={product.image} />
                 </div>
                 <div className="footer">
                   <Title>
@@ -109,21 +112,18 @@ export default function Products() {
                     <Text> $ {format(product.price)}</Text>
                   </Inline>
                   <Br px={5} />
-                  <div>
+                  <Inline y="end">
+                    <Text>{product.category}</Text>
                     <Dropdown
                       menu={{ items: drops(product) }}
                       trigger={["click"]}
+                      className="drop"
                     >
-                      <Inline y="end">
-                        <Text>{product.category}</Text>
-                        <div>
-                          <AppButton>
-                            <EllipsisOutlined />
-                          </AppButton>
-                        </div>
-                      </Inline>
+                      <AppButton>
+                        <EllipsisOutlined />
+                      </AppButton>
                     </Dropdown>
-                  </div>
+                  </Inline>
                 </div>
               </motion.div>
             ))}

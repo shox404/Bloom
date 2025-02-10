@@ -2,8 +2,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
 export const Styles = styled(motion.div)`
-  padding: 20px;
-  height: 100%;
+  padding-block: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -15,21 +14,20 @@ export const Styles = styled(motion.div)`
     border-radius: 20px;
     padding: 5px;
     .images {
-      overflow: hidden;
       border-radius: 16px;
       .ant-image {
         min-width: 100%;
-      }
-      .image {
-        height: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        object-fit: cover;
-        margin: auto;
-        img {
-          border-radius: 16px;
-          height: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        .image {
+          height: 150px;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          object-fit: cover;
+          object-fit: cover;
+          margin: auto;
         }
       }
     }

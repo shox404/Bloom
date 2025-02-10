@@ -4,13 +4,9 @@ import FormItem from "@/app/_components/form-item";
 import Loader from "@/app/_components/loader";
 import { Divider, Dropdown, Form, List, Popconfirm } from "antd";
 import { Styles } from "@/app/_styles/admin/settings";
-import { Text, Title } from "@/app/_styles/ui/text";
-import {
-  AppButton,
-  AppInput,
-  AppPassword,
-  Navbar,
-} from "@/app/_styles/ui/element";
+import { Text, Title } from "@/app/_styles/texts";
+import { AppButton, AppInput, AppPassword } from "@/app/_styles/form";
+import { Navbar } from "@/app/_styles/elements";
 import { AdminData, Category, FormValue } from "@/app/global/types";
 import {
   useEditAdminDataMutation,

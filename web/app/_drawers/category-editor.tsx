@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import { EditFilled } from "@ant-design/icons";
 import { AppInput } from "../_styles/form";
 import { Category } from "../global/types";
-import { useEditCategoryMutation } from "../_store/services/category";
+import { useEditCategoryMutation } from "../_lib/services/category";
 import { errorMsg } from "../global/utils";
 import FormItem from "../_components/form-item";
 import FormFooter from "../_components/form-footer";

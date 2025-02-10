@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import type { InputRef } from "antd";
-import { AppButton, AppInput, AppUpload } from "../_styles/form";
+import { AppInput, AppUpload } from "../_styles/form";
 import { AppImagePreview } from "../_styles/elements";
 import {
   useDeleteMutation,

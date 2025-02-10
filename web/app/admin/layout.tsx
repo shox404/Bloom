@@ -73,7 +73,7 @@ export default function Admin({ children }: Props) {
       <SideBar className={isSideBarOpen ? "open" : ""}>
         <Flex justify="space-between" align="center" className="header">
           <Link href="/admin">
-            <Title>E Shop</Title>
+            <Title>Bloom</Title>
           </Link>
           <AppIconButton onClick={toggleSideBar} className="handler">
             <ArrowLeftOutlined />
