@@ -1,4 +1,4 @@
-import { IncomingMessage } from "@/app/global/types";
+import { IncomingMessage } from "@/app//types";
 import { api } from "../api";
 
 export const adminApi = api.injectEndpoints({

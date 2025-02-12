@@ -20,7 +20,7 @@ import {
 import { Dropdown, Flex, Popconfirm } from "antd";
 import { ChangeEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { errorMsg, format } from "@/app/global/utils";
+import { errorMsg, format } from "@/app/utils";
 import { useRouter } from "next/navigation";
 import Tooltip from "@/app/_components/tooltip";
 import ItemEditor from "@/app/_drawers/product-editor";

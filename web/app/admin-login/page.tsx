@@ -5,10 +5,10 @@ import { Form } from "antd";
 import { Styles } from "@/app/_styles/admin/login";
 import { Title } from "@/app/_styles/texts";
 import { AppButton, AppInput, AppPassword } from "@/app/_styles/form";
-import { AdminData } from "@/app/global/types";
+import { AdminData } from "@/app//types";
 import { useLoginAdminMutation } from "@/app/_lib/services/admin";
 import { useEffect } from "react";
-import { errorMsg } from "@/app/global/utils";
+import { errorMsg } from "@/app/utils";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 

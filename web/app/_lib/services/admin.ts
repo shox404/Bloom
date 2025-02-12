@@ -2,7 +2,7 @@ import {
   AdminData,
   CurrentAdminData,
   IncomingMessage,
-} from "@/app/global/types";
+} from "@/app//types";
 import { api } from "../api";
 
 export const adminApi = api.injectEndpoints({

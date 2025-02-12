@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Product } from "@/app/types";
-import { Detail } from "@/app/global/types";
+import { Detail } from "@/app//types";
 import {
   createProduct,
   deleteProduct,
