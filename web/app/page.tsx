@@ -32,7 +32,7 @@ export default function Home() {
     <Main>
       <Navbar>
         <div className="logo">
-          <Image src={"../app/_assets/logo.png"} alt="*" />
+          <Image src={"/logo.png"} alt="*" width={200} height={200}/>
         </div>
         <AppButton>Cart</AppButton>
       </Navbar>

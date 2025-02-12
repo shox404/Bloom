@@ -3,13 +3,10 @@ import { reply, verify } from "@/app/api/utils";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/app/_firebase/config";
 
-export async function PUT(
-  request: NextRequest,
-  { params: { id } }: { params: { id: string } }
-) {
+export async function PUT(request: NextRequest) {
   await verify(request);
   const data = await request.json();
-  await updateDoc(doc(db, "category", id), data);
+  await updateDoc(doc(db, "category", data.id), data);
   return reply(data, 200);
 }
 

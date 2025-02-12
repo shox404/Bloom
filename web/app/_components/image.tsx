@@ -13,7 +13,7 @@ export default function AppImage({ image, ordinary }: Props) {
   if (!data) return;
 
   return ordinary ? (
-    <Image src={data?.msg} alt="*" className="image" />
+    <AntImage src={data?.msg} alt="*" className="image" />
   ) : (
     <AntImage src={data?.msg} alt="*" className="image" />
   );
