@@ -2,12 +2,13 @@
 
 import FormItem from "@/app/_components/form-item";
 import Loader from "@/app/_components/loader";
-import { Divider, Dropdown, Form, List, Popconfirm } from "antd";
+import { Divider, Dropdown, Flex, Form, List, message, Popconfirm } from "antd";
 import { Styles } from "@/app/_styles/admin/settings";
 import { Text, Title } from "@/app/_styles/texts";
 import { AppButton, AppInput, AppPassword } from "@/app/_styles/form";
 import { Navbar } from "@/app/_styles/elements";
-import { AdminData, Category, FormValue } from "@/app/global/types";
+import { AdminData, Detail, FormValue } from "@/app/global/types";
+import { Category } from "@/app/types";
 import {
   useEditAdminDataMutation,
   useGetAdminDataQuery,
@@ -29,6 +30,7 @@ import {
 import { EMPTY_CATEGORY, SET_CATEGORY } from "@/app/_lib/reducers/category";
 import CategoryEditor from "@/app/_drawers/category-editor";
 import DropItem from "@/app/_components/drop-item";
+import ImageUpload from "@/app/_components/uploader";
 
 export default function Settings() {
   const dispatch = useAppDispatch();
@@ -52,15 +54,23 @@ export default function Settings() {
     await edit(value).unwrap();
   };
 
-  const submitCategory = async (value: Category) => {
-    await createCategory(value)
-      .unwrap()
-      .then(() => dispatch(EMPTY_CATEGORY()));
+  const submitCategory = async () => {
+    if (value.image) {
+      await createCategory(value)
+        .unwrap()
+        .then(() => dispatch(EMPTY_CATEGORY()));
+    } else {
+      message.warning("Upload image!");
+    }
   };
 
   const setValue = (value: FormValue) => dispatch(SET_VALUE(value));
 
-  const setCategoryValue = (value: FormValue) => dispatch(SET_CATEGORY(value));
+  const setCategoryValue = (value: Detail) => dispatch(SET_CATEGORY(value));
+
+  const imageData = (image: string) => {
+    setCategoryValue({ key: "image", value: image });
+  };
 
   const drops = (data: Category) => {
     return [
@@ -111,19 +121,30 @@ export default function Settings() {
         <Form
           layout="vertical"
           onFinish={submitCategory}
-          onChange={setCategoryValue}
+          onChange={({ target: { id, value } }: FormValue) =>
+            setCategoryValue({ key: id, value })
+          }
           initialValues={value}
         >
           <Title>Categories</Title>
           <br />
-          <FormItem node={<AppInput />} name="key" />
-          <FormItem
-            node={
-              <AppButton disabled={moreCategory.isLoading}>
-                {moreCategory.isLoading ? <LoadingOutlined /> : ""} Create
-              </AppButton>
-            }
-          />
+          <Flex gap={25} className="form">
+            <ImageUpload
+              width="50%"
+              imageData={imageData}
+              initial={value.image}
+            />
+            <Flex vertical className="inputs">
+              <FormItem node={<AppInput />} name="key" />
+              <FormItem
+                node={
+                  <AppButton disabled={moreCategory.isLoading}>
+                    {moreCategory.isLoading ? <LoadingOutlined /> : ""} Create
+                  </AppButton>
+                }
+              />
+            </Flex>
+          </Flex>
           <Divider type="horizontal">List</Divider>
           <List>
             {category.map((item: Category, index) => (

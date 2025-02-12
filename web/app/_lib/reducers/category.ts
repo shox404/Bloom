@@ -5,22 +5,22 @@ import {
   editCategory,
   getCategory,
 } from "../services/category";
-import { Category } from "@/app/global/types";
+import { Category } from "@/app/types";
 
 type State = { category: Category[]; value: Category };
 
-const initialState: State = { category: [], value: { key: "" } };
+const initialState: State = { category: [], value: { key: "", image: "" } };
 
 const category = createSlice({
   name: "category",
   initialState,
   reducers: {
     SET_CATEGORY: (state, { payload }) => {
-      const { id, value } = payload.target;
-      state.value = { ...state.value, [id]: value };
+      const { key, value } = payload;
+      state.value = { ...state.value, [key]: value };
     },
     EMPTY_CATEGORY: (state) => {
-      state.value = { key: "" };
+      state.value = { key: "", image: "" };
     },
   },
   extraReducers(builder) {

@@ -18,6 +18,8 @@ export async function POST(request: NextRequest) {
   await verify(request);
   const data = await request.json();
 
+  if (data.uploader) delete data.uploader;
+
   const result = await addDoc(collection(db, "products"), {
     ...data,
     active: true,

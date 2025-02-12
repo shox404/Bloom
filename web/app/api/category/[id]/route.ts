@@ -5,7 +5,7 @@ import { db } from "@/app/_firebase/config";
 
 export async function PUT(
   request: NextRequest,
-  { params: { id } }: { params: { id: any } }
+  { params: { id } }: { params: { id: string } }
 ) {
   await verify(request);
   const data = await request.json();
@@ -15,7 +15,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params: { id } }: { params: { id: any } }
+  { params: { id } }: { params: { id: string } }
 ) {
   await verify(request);
   await deleteDoc(doc(db, "category", id));

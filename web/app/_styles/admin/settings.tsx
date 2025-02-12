@@ -24,6 +24,19 @@ export const Styles = styled.div`
       width: 40px;
       margin-top: 0;
     }
+    .form {
+      label {
+        height: 150px;
+        margin: 0;
+      }
+      .inputs {
+        width: 50%;
+        padding: 0;
+        .ant-form-item {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
   @media screen and (max-width: 480px) {
     width: 100%;

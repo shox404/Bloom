@@ -14,7 +14,8 @@ export type User = {
 };
 
 export type Category = {
-  name: string;
+  id?: string;
+  key: string;
   image: string;
 };
 
