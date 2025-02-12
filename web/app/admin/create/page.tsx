@@ -62,7 +62,7 @@ export default function Create() {
             }
             initialValues={product}
           >
-            <Flex>
+            <Flex className="line">
               <ImageUpload
                 imageData={imageData}
                 initial={product.image}

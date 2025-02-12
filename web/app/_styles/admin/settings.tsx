@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Styles = styled.div`
-  padding: 20px;
+  padding-block: 20px;
   min-height: calc(100% - 70px);
   display: flex;
   justify-content: center;
@@ -11,7 +11,7 @@ export const Styles = styled.div`
     border-radius: 20px;
     width: 50%;
     background-color: #ffffff;
-    padding: 25px 35px 20px 35px;
+    padding: 17px 25px 5px 25px;
     button,
     input {
       width: 100%;

@@ -34,6 +34,18 @@ export const Styles = styled.div`
     padding-inline: 0;
     .content {
       padding: 15px 25px 10px 25px;
+      .line {
+        label {
+          width: 100%;
+        }
+        .inputs {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+    }
+    .line {
+      flex-direction: column;
     }
   }
 `;
