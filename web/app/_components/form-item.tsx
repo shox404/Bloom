@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function FormItem({ name, node, isPsw, isEmail }: Props) {
-  let rules: Rule[] = [{ required: true, message: `Please enter ${name}.` }];
+  const rules: Rule[] = [{ required: true, message: `Please enter ${name}.` }];
 
   if (isPsw) {
     rules.push({ min: 6, message: "Password's length must be more than 6." });

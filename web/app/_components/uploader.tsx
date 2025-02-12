@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, RefObject } from "react";
 import type { InputRef } from "antd";
 import { AppInput, AppUpload } from "../_styles/form";
 import { AppImagePreview } from "../_styles/elements";
@@ -72,7 +72,7 @@ export default function ImageUpload({ imageData, initial, width }: Props) {
       <AppInput
         type="file"
         accept="image/*"
-        ref={fileInputRef as any}
+        ref={fileInputRef as RefObject<InputRef>}
         onChange={handleFileChange}
         id="uploader"
         disabled={loading}

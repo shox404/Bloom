@@ -4,24 +4,42 @@ export const Main = styled.main`
   background-color: #ebeaef;
   min-height: 100dvh;
   padding: 10px;
-  display: flex;
-  align-content: start;
-  justify-content: center;
-  gap: 10px;
+  .logo {
+    width: 70px;
+    position: relative;
+    img {
+      height: 40px;
+      object-fit: cover ;
+      border-radius: 16px;
+    }
+  }
+  .blocks {
+    margin-block: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
 `;
 
-export const Card = styled.div`
+export const CategoryCard = styled.div`
   width: 100%;
-  padding: 20px;
   background-color: #ffffff;
   border-radius: 2rem;
-  box-shadow: 0 0 10px 5px #e7e7e7;
+  box-shadow: 0 0 10px 5px #e3e3e3;
   transition: 0.2s;
+  padding: 5px;
   img {
-    border-radius: 2rem;
+    border-radius: 1.7rem;
   }
   .title {
     font-weight: 700;
     font-size: 15px;
+    width: 100%;
+    height: 50px;
+    border-radius: 1.7rem;
+    background-color: #ffe1e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;

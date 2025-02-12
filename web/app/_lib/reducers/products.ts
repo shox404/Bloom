@@ -33,7 +33,7 @@ const products = createSlice({
     EQUAL_PRODUCT: (state, { payload }: { payload: Detail }) => {
       state.product = { ...state.product, [payload.key]: payload.value };
     },
-    SET_EDIT: (state, { payload }: { payload: any }) => {
+    SET_EDIT: (state, { payload }: { payload: Product }) => {
       state.editProduct = payload;
     },
     EQUAL_EDIT: (state, { payload }: { payload: Detail }) => {

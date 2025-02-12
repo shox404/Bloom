@@ -7,7 +7,7 @@ import { useEditProductMutation } from "@/app/_lib/services/products";
 import { AppInput, AppSelect } from "@/app/_styles/form";
 import { Detail, FormValue } from "@/app//types";
 import { errorMsg, categoryOptions } from "@/app/utils";
-import { EditFilled, InboxOutlined } from "@ant-design/icons";
+import { EditFilled } from "@ant-design/icons";
 import { Drawer, Form, message } from "antd";
 import { useRouter } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
@@ -31,7 +31,7 @@ export default function ItemEditor({ data }: { data: Product }) {
 
   useEffect(() => {
     dispatch(SET_EDIT(data));
-  }, [data]);
+  }, [data, dispatch]);
 
   useEffect(() => errorMsg(error), [error]);
 

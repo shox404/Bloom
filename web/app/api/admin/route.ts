@@ -9,14 +9,14 @@ import { verify } from "@/app/api/utils";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export async function GET(_request: NextRequest) {
+export async function GET() {
   const data = (await getDoc(doc(db, "app", "admin"))).data() as AdminData;
   return reply({ name: data.name }, 200);
 }
 
 export async function POST(request: NextRequest) {
   const cookieStore = await cookies();
-  const { name, password } = (await request.json()) as AdminData;
+  const { name, password }: AdminData = await request.json();
   if (!name || !password) return reply({ msg: "Enter details!" }, 400);
   const data = (await getDoc(doc(db, "app", "admin"))).data() as AdminData;
   const compare = await bcrypt.compare(password, data.password);

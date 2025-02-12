@@ -37,6 +37,9 @@ export type CurrentAdminData = { name: string; password?: string };
 
 export type PayloadMsg = { payload: IncomingMessage };
 
-export type Detail = { key: string; value: any };
+export type Detail = {
+  key: string;
+  value: unknown | string | number | undefined;
+};
 
 export type FormValue = ChangeEvent<HTMLFormElement>;

@@ -8,9 +8,10 @@ export const Text = styled(Default)`
   font-weight: 700;
 `;
 
-export const Title = styled(Default)`
+export const Title = styled(Default)<{ center?: boolean }>`
   font-size: 23px;
   color: #00010f;
+  text-align: ${(p) => (p.center ? "center" : "")};
 `;
 
 export const Thin = styled(Default)`

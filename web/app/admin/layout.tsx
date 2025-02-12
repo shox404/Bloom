@@ -54,7 +54,7 @@ export default function Admin({ children }: Props) {
     setIsSideBarOpen(globalThis.innerWidth >= 480);
     const token = getCookie("admin-token");
     if (!token || token === "") router.push("/admin-login");
-  }, []);
+  }, [router]);
 
   const toggleSideBar = () => setIsSideBarOpen(!isSideBarOpen);
 

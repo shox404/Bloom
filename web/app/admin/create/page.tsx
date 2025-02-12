@@ -7,7 +7,7 @@ import { useCreateProductMutation } from "@/app/_lib/services/products";
 import { Styles } from "@/app/_styles/admin/create";
 import { Navbar } from "@/app/_styles/elements";
 import { AppButton, AppInput, AppSelect } from "@/app/_styles/form";
-import { Text, Title } from "@/app/_styles/texts";
+import { Text } from "@/app/_styles/texts";
 import { Detail, FormValue } from "@/app//types";
 import { categoryOptions } from "@/app/utils";
 import { LoadingOutlined } from "@ant-design/icons";

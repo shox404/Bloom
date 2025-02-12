@@ -1,13 +1,13 @@
 "use client";
 
 import Loader from "@/app/_components/loader";
-import Box from "./dashboard-blocks/box";
+// import Box from "./dashboard-blocks/box";
 import Products from "./dashboard-blocks/products";
 import { Styles } from "@/app/_styles/admin/dashboard";
 import { Navbar } from "@/app/_styles/elements";
 import { Text } from "@/app/_styles/texts";
-import { ProductFilled } from "@ant-design/icons";
-import { useAppSelector } from "../_lib/hooks";
+// import { ProductFilled } from "@ant-design/icons";
+// import { useAppSelector } from "../_lib/hooks";
 // import { useGetProductsQuery } from "../_lib/services/products";
 
 export default function Dashboard() {

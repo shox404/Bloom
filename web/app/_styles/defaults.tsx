@@ -23,7 +23,7 @@ export const DefaultBtn = styled.button`
   }
 `;
 
-export const InputUi = (p: any) => `
+export const InputUi = (p: { width: number }) => `
   height: 45px;
   border-radius: 10px;
   font-size: 16px;

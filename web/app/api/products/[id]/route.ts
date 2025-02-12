@@ -9,10 +9,10 @@ export async function PUT(request: NextRequest) {
     await verify(request);
     const data = await request.json();
 
-    let image = data.new_image || data.image || null;
+    const image = data.new_image || data.image || null;
     delete data.new_image;
 
-    const updateData: any = { ...data };
+    const updateData = { ...data };
     if (image) updateData.image = image;
 
     await updateDoc(doc(db, "products", data.id), updateData);

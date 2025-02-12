@@ -39,6 +39,7 @@ export const Navbar = styled.nav`
   border-radius: 20px;
   height: 70px;
   background-color: #fff;
+  box-shadow: 0 0 10px 5px #e3e3e3;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,12 +49,14 @@ export const Navbar = styled.nav`
   @media screen and (max-width: 480px) {
     margin-inline: 0px;
     width: 100%;
-    padding: 5px 10px;
+    height: auto;
+    padding: 5px;
     flex-wrap: wrap;
     button,
     .ant-input-affix-wrapper {
-      height: 35px;
-      padding: 10px;
+      height: 40px;
+      padding: 10px 15px;
+      border-radius: 16px;
     }
     .line {
       width: 100%;

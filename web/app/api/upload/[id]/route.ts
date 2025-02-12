@@ -15,7 +15,7 @@ export async function GET(
     const url = storage.getFileView(bucketId, uploadedFile.$id);
     
     return reply({ msg: url }, 200);
-  } catch (error) {
+  } catch {
     return reply({ msg: "File not found" }, 404);
   }
 }
@@ -29,7 +29,7 @@ export async function DELETE(
     storage.deleteFile(bucketId, id);
     deleteDoc(doc(db, "images", id));
     return reply({ msg: id }, 200);
-  } catch (error) {
+  } catch {
     return reply({ msg: "File not found" }, 404);
   }
 }

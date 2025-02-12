@@ -12,7 +12,7 @@ export const productsApi = api.injectEndpoints({
     editProduct: build.mutation<Product, Product>({
       query: (body) => ({ url: `/products/${body.id}`, method: "PUT", body }),
     }),
-    deleteProduct: build.mutation<string, { id: string; image: string }>({
+    deleteProduct: build.mutation<{ id: string; image: string }, { id: string; image: string }>({
       query: (data) => ({
         url: `/products/${data.id}`,
         method: "DELETE",

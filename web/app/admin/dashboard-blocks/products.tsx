@@ -1,7 +1,7 @@
-import { Pie } from "@ant-design/plots";
-import { PieBox } from "@/app/_styles/admin/dashboard";
-import { useAppSelector } from "@/app/_lib/hooks";
-import { useGetCategoryQuery } from "@/app/_lib/services/category";
+// import { Pie } from "@ant-design/plots";
+// import { PieBox } from "@/app/_styles/admin/dashboard";
+// import { useAppSelector } from "@/app/_lib/hooks";
+// import { useGetCategoryQuery } from "@/app/_lib/services/category";
 
 export default function Products() {
   // const {

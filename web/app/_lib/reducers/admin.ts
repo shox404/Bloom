@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { CurrentAdminData, PayloadMsg } from "@/app//types";
 import { message } from "antd";
 import { loginAdmin, getAdminData, editAdminData } from "../services/admin";
-import { Category } from "@/app/types";
 
 type State = { data: CurrentAdminData };
 

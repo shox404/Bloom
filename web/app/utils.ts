@@ -1,7 +1,7 @@
 import { message } from "antd";
 import { Category } from "@/app/types";
 
-export const errorMsg = (error: any) => {
+export const errorMsg = (error: { data: { message: string } }) => {
   if (error) {
     if (error?.data?.message) {
       message.error(error?.data?.message);
@@ -12,7 +12,7 @@ export const errorMsg = (error: any) => {
 };
 
 export const categoryOptions = (array: Category[]) => {
-  return array.map((e: any) => ({
+  return array.map((e: Category) => ({
     value: e.key[0].toUpperCase() + e.key.slice(1),
   }));
 };

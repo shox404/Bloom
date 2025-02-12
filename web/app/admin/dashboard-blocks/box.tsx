@@ -1,7 +1,8 @@
-import { Thin, Title } from "@/app/_styles/ui/text";
+import { ReactNode } from "react";
+import { Thin, Title } from "@/app/_styles/texts";
 
 interface Props {
-  icon: any;
+  icon: ReactNode;
   title: string;
   text: string;
 }
