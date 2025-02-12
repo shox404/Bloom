@@ -8,15 +8,18 @@ import {
   useUploadMutation,
 } from "../_lib/services/upload";
 import UploadImage from "../_assets/upload.png";
+import Loader from "./loader";
 
 interface Props {
   imageData: (image: string) => void;
   initial: string;
+  width: string;
 }
 
-export default function ImageUpload({ imageData, initial }: Props) {
+export default function ImageUpload({ imageData, initial, width }: Props) {
   const fileInputRef = useRef<InputRef | HTMLInputElement | null>(null);
   const [image, setImage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [upload] = useUploadMutation();
   const [deleteImage] = useDeleteMutation();
 
@@ -25,6 +28,7 @@ export default function ImageUpload({ imageData, initial }: Props) {
 
   const postImage = async (formData: FormData) => {
     try {
+      setLoading(true);
       if (image) {
         await deleteImage(image);
         setImage("");
@@ -39,6 +43,8 @@ export default function ImageUpload({ imageData, initial }: Props) {
       }
     } catch (error) {
       console.error("Image upload failed:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,28 +67,23 @@ export default function ImageUpload({ imageData, initial }: Props) {
     }
   };
 
-  const handleUploadClick = () => {
-    const { current } = fileInputRef;
-    if (current) {
-      if ("click" in current) {
-        (current as HTMLInputElement).click();
-      } else if ("input" in current && current.input) {
-        current.input.click();
-      }
-    }
-  };
-
   return (
-    <AppUpload htmlFor="uploader">
+    <AppUpload htmlFor="uploader" width={width}>
       <AppInput
         type="file"
         accept="image/*"
         ref={fileInputRef as any}
         onChange={handleFileChange}
         id="uploader"
+        disabled={loading}
       />
-      {queryId && data?.msg && <AppImagePreview src={data.msg} alt="*" />}
-      <AppImagePreview src={UploadImage.src} alt="*" />
+      <Loader is={loading}>
+        {queryId && data?.msg ? (
+          <AppImagePreview src={data.msg} alt="*" />
+        ) : (
+          <AppImagePreview src={UploadImage.src} alt="*" />
+        )}
+      </Loader>
     </AppUpload>
   );
 }

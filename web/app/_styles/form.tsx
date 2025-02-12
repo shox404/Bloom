@@ -39,7 +39,7 @@ export const AppSelect = styled(Select)`
   }
 `;
 
-export const AppUpload = styled.label`
+export const AppUpload = styled.label<{ width: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +47,7 @@ export const AppUpload = styled.label`
   padding: 3px;
   border: 2px dashed #ccc;
   border-radius: 10px;
-  width: 350px;
+  width: ${(p) => p.width};
   text-align: center;
   margin-block: 10px;
   input {

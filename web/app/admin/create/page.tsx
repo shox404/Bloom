@@ -63,7 +63,11 @@ export default function Create() {
             initialValues={product}
           >
             <Flex>
-              <ImageUpload imageData={imageData} initial={product.image} />
+              <ImageUpload
+                imageData={imageData}
+                initial={product.image}
+                width="350px"
+              />
               <Flex vertical className="inputs">
                 <FormItem node={<AppInput />} name="title" />
                 <FormItem

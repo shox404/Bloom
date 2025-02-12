@@ -17,14 +17,13 @@ import {
   PlusOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { Dropdown, Flex, Image, Popconfirm } from "antd";
+import { Dropdown, Flex, Popconfirm } from "antd";
 import { ChangeEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { errorMsg, format } from "@/app/global/utils";
 import { useRouter } from "next/navigation";
-import { useGetImageQuery } from "@/app/_lib/services/upload";
 import Tooltip from "@/app/_components/tooltip";
-import ItemEditor from "@/app/_drawers/item-editor";
+import ItemEditor from "@/app/_drawers/product-editor";
 import AppImage from "@/app/_components/image";
 
 export default function Products() {
@@ -32,7 +31,7 @@ export default function Products() {
   const [search, setSearch] = useState("");
   const [deleteProduct, { error }] = useDeleteProductMutation();
 
-  useGetProductQuery();
+  const data = useGetProductQuery();
 
   useEffect(() => errorMsg(error), [error]);
 
@@ -46,14 +45,16 @@ export default function Products() {
       },
       {
         label: (
-          // deleteProduct(data?.id)
-          <Popconfirm title="Delete?" onConfirm={() => null}>
-            {/* <Inline y="start"> */}
-            <div>
-              <DeleteOutlined /> Delete
-            </div>
-            {/* . */}
-            {/* </Inline> */}
+          <Popconfirm
+            title="Delete?"
+            onConfirm={() =>
+              deleteProduct({ id: data?.id, image: data.image } as {
+                id: string;
+                image: string;
+              })
+            }
+          >
+            <DeleteOutlined /> Delete
           </Popconfirm>
         ),
         key: "1",
@@ -68,8 +69,7 @@ export default function Products() {
   const goCreate = () => router.push("/admin/create");
 
   return (
-    // item.isLoading
-    <Loader is={false}>
+    <Loader is={data.isLoading}>
       <Navbar>
         <Text>Products</Text>
         <Flex gap={10} className="line">
