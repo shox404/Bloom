@@ -6,14 +6,15 @@ import { NextRequest } from "next/server";
 
 export async function GET(
   _request: NextRequest,
-  { params: { id } }: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
-  try { 
+  try {
+    const { id } = params;
     const bucketId = "679f09690013e0e294d5";
-  
+
     const uploadedFile = await storage.getFile(bucketId, id);
     const url = storage.getFileView(bucketId, uploadedFile.$id);
-    
+
     return reply({ msg: url }, 200);
   } catch {
     return reply({ msg: "File not found" }, 404);
@@ -22,9 +23,10 @@ export async function GET(
 
 export async function DELETE(
   _request: NextRequest,
-  { params: { id } }: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
   try {
+    const { id } = params;
     const bucketId = "679f09690013e0e294d5";
     storage.deleteFile(bucketId, id);
     deleteDoc(doc(db, "images", id));
