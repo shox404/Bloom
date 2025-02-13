@@ -1,6 +1,15 @@
 import { NextRequest } from "next/server";
 import { reply } from "../utils";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "@/app/_firebase/config";
 import { verify } from "@/app/api/utils";
 
@@ -12,6 +21,23 @@ export async function GET() {
   } catch {
     return reply({ msg: "Server error" }, 500);
   }
+}
+
+export async function PUT(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id") as string;
+  await verify(request);
+  const data = await request.json();
+  await updateDoc(doc(db, "category", id), data);
+  return reply(data, 200);
+}
+
+export async function DELETE(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id") as string;
+  await verify(request);
+  await deleteDoc(doc(db, "category", id));
+  return reply({ id }, 200);
 }
 
 export async function POST(request: NextRequest) {
