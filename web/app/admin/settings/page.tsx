@@ -13,8 +13,6 @@ import {
   useEditAdminDataMutation,
   useGetAdminDataQuery,
 } from "@/app/_lib/services/admin";
-import { useEffect } from "react";
-import { errorMsg } from "@/app/utils";
 import {
   DeleteOutlined,
   EllipsisOutlined,
@@ -35,7 +33,7 @@ import ImageUpload from "@/app/_components/uploader";
 export default function Settings() {
   const dispatch = useAppDispatch();
   const adminData = useGetAdminDataQuery();
-  const [edit, { error, isLoading }] = useEditAdminDataMutation();
+  const [edit, { isLoading }] = useEditAdminDataMutation();
   const [deleteCategory] = useDeleteCategoryMutation();
   const [createCategory, moreCategory] = useCreateCategoryMutation();
   const {
@@ -44,11 +42,6 @@ export default function Settings() {
   } = useAppSelector((state) => state);
 
   useGetCategoryQuery();
-
-  useEffect(() => {
-    errorMsg(error);
-    errorMsg(adminData.error);
-  }, [error, adminData.error]);
 
   const submit = async (value: AdminData) => {
     await edit(value).unwrap();
@@ -82,7 +75,7 @@ export default function Settings() {
         label: (
           <Popconfirm
             title="Delete?"
-            onConfirm={() => deleteCategory({ id: data.id })}
+            onConfirm={() => deleteCategory({ id: data.id as string })}
           >
             <DropItem onClick={() => null}>
               <DeleteOutlined /> Delete

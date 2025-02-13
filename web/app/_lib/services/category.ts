@@ -10,10 +10,17 @@ export const categoryApi = api.injectEndpoints({
       query: (body) => ({ url: "/category", method: "POST", body }),
     }),
     editCategory: build.mutation<Category, Category>({
-      query: (body) => ({ url: `/category/${body.id}`, method: "PUT", body }),
+      query: (body) => ({
+        url: `/category?id=${body.id}`,
+        method: "PUT",
+        body,
+      }),
     }),
     deleteCategory: build.mutation<{ id: string }, { id: string }>({
-      query: (data) => ({ url: `/category/${data.id}`, method: "DELETE" }),
+      query: (data) => ({
+        url: `/category?id=${data}`,
+        method: "DELETE",
+      }),
     }),
   }),
 });

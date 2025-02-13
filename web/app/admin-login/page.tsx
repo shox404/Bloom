@@ -7,16 +7,12 @@ import { Title } from "@/app/_styles/texts";
 import { AppButton, AppInput, AppPassword } from "@/app/_styles/form";
 import { AdminData } from "@/app//types";
 import { useLoginAdminMutation } from "@/app/_lib/services/admin";
-import { useEffect } from "react";
-import { errorMsg } from "@/app/utils";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const [login, { error, isLoading }] = useLoginAdminMutation();
+  const [login, { isLoading }] = useLoginAdminMutation();
   const router = useRouter();
-
-  useEffect(() => errorMsg(error), [error]);
 
   const submit = async (value: AdminData) => {
     await login(value)

@@ -6,7 +6,7 @@ import { SET_EDIT, EQUAL_EDIT } from "@/app/_lib/reducers/products";
 import { useEditProductMutation } from "@/app/_lib/services/products";
 import { AppInput, AppSelect } from "@/app/_styles/form";
 import { Detail, FormValue } from "@/app//types";
-import { errorMsg, categoryOptions } from "@/app/utils";
+import { categoryOptions } from "@/app/utils";
 import { EditFilled } from "@ant-design/icons";
 import { Drawer, Form, message } from "antd";
 import { useRouter } from "next/navigation";
@@ -19,7 +19,7 @@ import ImageUpload from "../_components/uploader";
 
 export default function ItemEditor({ data }: { data: Product }) {
   const [visible, setVisible] = useState(false);
-  const [editItem, { isLoading, error }] = useEditProductMutation();
+  const [editItem, { isLoading }] = useEditProductMutation();
   const dispatch = useAppDispatch();
   const router = useRouter();
   const {
@@ -33,8 +33,6 @@ export default function ItemEditor({ data }: { data: Product }) {
     dispatch(SET_EDIT(data));
   }, [data, dispatch]);
 
-  useEffect(() => errorMsg(error), [error]);
-
   const toggle = () => setVisible(!visible);
 
   const submit = async () => {
@@ -43,7 +41,14 @@ export default function ItemEditor({ data }: { data: Product }) {
         .unwrap()
         .then(() => {
           router.push("/admin/products");
-          dispatch(SET_EDIT({}));
+          dispatch(
+            SET_EDIT({
+              title: "",
+              image: "",
+              price: 0,
+              category: "",
+            })
+          );
           toggle();
         });
     } else {

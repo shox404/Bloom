@@ -25,7 +25,7 @@ export const productsApi = api.injectEndpoints({
       { id: string; image: string }
     >({
       query: (data) => ({
-        url: `/products/${data.id}`,
+        url: `/products?id=${data.id}`,
         method: "DELETE",
         body: data.image,
       }),

@@ -23,7 +23,9 @@ export const IconButton = styled(DefaultBtn)`
   border-radius: 50%;
 `;
 
-export const AppInput = styled(Input)<{ width?: string }>(InputUi);
+export const AppInput = styled(Input)<{ width?: string; text?: "center" }>(
+  InputUi
+);
 
 export const AppPassword = styled(Input.Password)(InputUi);
 

@@ -21,7 +21,6 @@ export async function GET(request: NextRequest) {
     if (!category) {
       return reply({ message: "Category is required" }, 400);
     }
-    console.log(category);
 
     const q = query(
       collection(db, "products"),
@@ -64,13 +63,11 @@ export async function PUT(request: NextRequest) {
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  { params: { id } }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest) {
   await verify(request);
   const data = await request.text();
-
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id") as string;
   const bucketId = "679f09690013e0e294d5";
   storage.deleteFile(bucketId, data);
   await deleteDoc(doc(db, "products", id));

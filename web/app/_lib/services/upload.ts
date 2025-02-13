@@ -4,13 +4,13 @@ import { api } from "../api";
 export const adminApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getImage: builder.query<IncomingMessage, string>({
-      query: (id) => ({ url: `/upload/${id}`, method: "GET" }),
+      query: (id) => ({ url: `/upload?id=${id}`, method: "GET" }),
     }),
     upload: builder.mutation<IncomingMessage, FormData>({
       query: (body) => ({ url: "/upload", method: "POST", body }),
     }),
     delete: builder.mutation<IncomingMessage, string>({
-      query: (id) => ({ url: `/upload/${id}`, method: "DELETE" }),
+      query: (id) => ({ url: `/upload?id=${id}`, method: "DELETE" }),
     }),
   }),
 });

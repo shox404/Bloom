@@ -4,12 +4,10 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/app/_firebase/config";
 import { NextRequest } from "next/server";
 
-export async function GET(
-  _request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest) {
   try {
-    const { id } = params;
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id") as string;
     const bucketId = "679f09690013e0e294d5";
 
     const uploadedFile = await storage.getFile(bucketId, id);
@@ -21,12 +19,10 @@ export async function GET(
   }
 }
 
-export async function DELETE(
-  _request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest) {
   try {
-    const { id } = params;
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id") as string;
     const bucketId = "679f09690013e0e294d5";
     storage.deleteFile(bucketId, id);
     deleteDoc(doc(db, "images", id));
