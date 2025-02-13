@@ -6,9 +6,15 @@ import {
   deleteProduct,
   editProduct,
   getProduct,
+  getProductByCategory,
 } from "../services/products";
 
-type State = { product: Product; editProduct: Product; products: Product[] };
+type State = {
+  product: Product;
+  editProduct: Product;
+  products: Product[];
+  productsByCategory: Product[];
+};
 
 const initialState: State = {
   product: {
@@ -24,6 +30,7 @@ const initialState: State = {
     category: "",
   },
   products: [],
+  productsByCategory: [],
 };
 
 const products = createSlice({
@@ -50,6 +57,9 @@ const products = createSlice({
     builder
       .addMatcher(getProduct.matchFulfilled, (state, { payload }) => {
         state.products = payload;
+      })
+      .addMatcher(getProductByCategory.matchFulfilled, (state, { payload }) => {
+        state.productsByCategory = payload;
       })
       .addMatcher(createProduct.matchFulfilled, (state, { payload }) => {
         state.products.push(payload);

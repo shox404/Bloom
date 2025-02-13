@@ -1,8 +1,43 @@
 import { NextRequest } from "next/server";
 import { reply, verify } from "@/app/api/utils";
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { db } from "@/app/_firebase/config";
 import { storage } from "@/app/_appwrite/config";
+
+export async function GET(request: NextRequest) {
+  try {
+    await verify(request);
+    const { searchParams } = new URL(request.url);
+    const category = searchParams.get("category");
+
+    if (!category) {
+      return reply({ message: "Category is required" }, 400);
+    }
+    console.log(category);
+
+    const q = query(
+      collection(db, "products"),
+      where("category", "==", category)
+    );
+    const querySnapshot = await getDocs(q);
+    const products = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return reply(products, 200);
+  } catch {
+    return reply({ message: "Internal Server Error" }, 500);
+  }
+}
 
 export async function PUT(request: NextRequest) {
   try {

@@ -28,6 +28,8 @@ export const CategoryCard = styled.div`
   box-shadow: 0 0 10px 5px #e3e3e3;
   transition: 0.2s;
   padding: 5px;
+  display: flex;
+  flex-direction: column;
   img {
     border-radius: 1.7rem;
   }

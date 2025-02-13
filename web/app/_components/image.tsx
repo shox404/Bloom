@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Image as AntImage } from "antd";
 import { useGetImageQuery } from "../_lib/services/upload";
 
@@ -12,7 +13,7 @@ export default function AppImage({ image, ordinary }: Props) {
   if (!data) return;
 
   return ordinary ? (
-    <AntImage src={data?.msg} alt="*" className="image" />
+    <Image src={data?.msg} alt="*" className="image" width={200} height={200} />
   ) : (
     <AntImage src={data?.msg} alt="*" className="image" />
   );
