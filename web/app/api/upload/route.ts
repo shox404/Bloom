@@ -1,7 +1,7 @@
 import { storage } from "@/app/_appwrite/config";
 import { ID } from "appwrite";
 import { NextRequest } from "next/server";
-import { reply } from "../utils";
+import { reply, verify } from "../utils";
 import { db } from "@/app/_firebase/config";
 import { deleteDoc, doc } from "firebase/firestore";
 
@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id") as string;
+    await verify(request);
     const bucketId = "679f09690013e0e294d5";
 
     const uploadedFile = await storage.getFile(bucketId, id);

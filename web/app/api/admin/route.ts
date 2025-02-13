@@ -15,6 +15,7 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  await verify(request);
   const cookieStore = await cookies();
   const { name, password }: AdminData = await request.json();
   if (!name || !password) return reply({ msg: "Enter details!" }, 400);

@@ -27,6 +27,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+
     const { phone } = await request.json();
 
     if (!phone) {
