@@ -16,7 +16,6 @@ import { storage } from "@/app/_appwrite/config";
 
 export async function GET(request: NextRequest) {
   try {
-    await verify(request);
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category");
 
