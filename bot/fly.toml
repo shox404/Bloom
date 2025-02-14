@@ -1,0 +1,24 @@
+app = "bloom"
+
+[build]
+    image = "python:3.10"
+
+[env]
+    BOT_TOKEN=8157084713:AAGXEYkgVgo325XXrBAZcd67-a0xd1oJQFM
+    WEB_APP_URL=https://bloom-unique.vercel.app/
+
+[[services]]
+    internal_port = 8080
+    protocol = "tcp"
+
+    [[services.ports]]
+        handlers = ["http"]
+        port = 80
+
+    [[services.concurrency]]
+        type = "requests"
+        hard_limit = 25
+        soft_limit = 20
+
+[processes]
+    app = "python bot.py"
