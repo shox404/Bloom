@@ -1,5 +1,5 @@
 import { User } from "../types";
-import { db } from "./config";
+import { db } from "./firebase";
 import {
   collection,
   doc,

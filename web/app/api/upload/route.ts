@@ -1,8 +1,8 @@
-import { storage } from "@/app/_appwrite/config";
+import { storage } from "@/app/_database/appwrite";
 import { ID } from "appwrite";
 import { NextRequest } from "next/server";
 import { reply } from "../utils";
-import { db } from "@/app/_firebase/config";
+import { db } from "@/app/_database/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 
 export async function GET(request: NextRequest) {

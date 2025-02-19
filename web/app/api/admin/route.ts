@@ -2,7 +2,7 @@ import { AdminData } from "@/app//types";
 import { NextRequest } from "next/server";
 import { reply } from "@/app/api/utils";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "@/app/_firebase/config";
+import { db } from "@/app/_database/firebase";
 import { cookies } from "next/headers";
 import { expires } from "@/app/actions";
 import { verify } from "@/app/api/utils";

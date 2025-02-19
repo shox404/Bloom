@@ -2,7 +2,7 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import { SignStyles } from "../_styles/sign-styles";
-import { getUserByPhone } from "../_firebase/functions";
+import { getUserByPhone } from "../_database/firebase-functions";
 import { User } from "../types";
 import { sendCode } from "../_utils/tg-functions";
 import { useSignUserMutation } from "../_lib/services/users";

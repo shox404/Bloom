@@ -10,9 +10,9 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "@/app/_firebase/config";
+import { db } from "@/app/_database/firebase";
 import { verify } from "@/app/api/utils";
-import { storage } from "@/app/_appwrite/config";
+import { storage } from "@/app/_database/appwrite";
 
 export async function GET(request: NextRequest) {
   try {

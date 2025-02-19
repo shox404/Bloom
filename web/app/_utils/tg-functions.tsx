@@ -1,5 +1,5 @@
 import axios from "axios";
-import { updateUserById } from "../_firebase/functions";
+import { updateUserById } from "../_database/firebase-functions";
 import { User } from "../types";
 
 export const generateCode = (): string => {
