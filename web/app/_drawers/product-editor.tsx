@@ -47,6 +47,7 @@ export default function ItemEditor({ data }: { data: Product }) {
               image: "",
               price: 0,
               category: "",
+              amount: 1,
             })
           );
           toggle();

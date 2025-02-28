@@ -2,7 +2,6 @@
 
 import { CategoryCard, Main } from "./_styles/products";
 import { Title } from "./_styles/texts";
-import { Category } from "./types";
 import { Block } from "./_styles/elements";
 import { useGetCategoryQuery } from "./_lib/services/category";
 import { useAppSelector } from "./_lib/hooks";

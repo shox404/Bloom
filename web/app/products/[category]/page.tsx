@@ -3,7 +3,7 @@
 import AppImage from "@/app/_components/image";
 import Tooltip from "@/app/_components/tooltip";
 import MainNavbar from "@/app/_components/navbar";
-import { useAppSelector } from "@/app/_lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/_lib/hooks";
 import { useGetProductByCategoryQuery } from "@/app/_lib/services/products";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -12,12 +12,22 @@ import { Br } from "@/app/_styles/elements";
 import { format } from "@/app/utils";
 import { ProductsStyles } from "@/app/_styles/products-client";
 import { AppButton } from "@/app/_styles/form";
+import { HANDLE_TO_CART } from "@/app/_lib/reducers/cart";
+import { Product } from "@/app/types";
 
 export default function Products() {
   const { category } = useParams();
-  const { productsByCategory } = useAppSelector((state) => state.products);
+  const {
+    products: { productsByCategory },
+    cart: { cart },
+  } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   useGetProductByCategoryQuery(category);
+
+  const handleToCart = (product: Product) => {
+    dispatch(HANDLE_TO_CART(product));
+  };
 
   return (
     <ProductsStyles>
@@ -32,7 +42,7 @@ export default function Products() {
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="images">
+            <div className="image">
               <AppImage image={item.image} />
             </div>
             <div className="footer">
@@ -44,7 +54,9 @@ export default function Products() {
                 <Tooltip>$ {format(item.price)}</Tooltip>
               </Text>
               <Br px={5} />
-              <AppButton>Order</AppButton>
+              <AppButton onClick={() => handleToCart(item)}>
+                {cart.some((e) => e.id == item.id) ? "Remove" : "Order"}
+              </AppButton>
             </div>
           </motion.div>
         ))}

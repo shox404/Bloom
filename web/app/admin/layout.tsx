@@ -42,7 +42,6 @@ const links = [
 
 interface Props {
   children: ReactNode;
-  dashboard: boolean;
 }
 
 export default function Admin({ children }: Props) {

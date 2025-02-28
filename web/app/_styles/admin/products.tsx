@@ -13,19 +13,18 @@ export const Styles = styled(motion.div)`
     background-color: #fff;
     border-radius: 20px;
     padding: 5px;
-    .images {
+    .image {
       border-radius: 16px;
       .ant-image {
         min-width: 100%;
         border-radius: 16px;
         overflow: hidden;
-        .image {
+        .inner-image {
           height: 150px;
           overflow: hidden;
           display: flex;
           justify-content: center;
           align-items: center;
-          object-fit: cover;
           object-fit: cover;
           margin: auto;
         }
@@ -49,7 +48,7 @@ export const Styles = styled(motion.div)`
     padding-inline: 0;
     .card {
       width: 100%;
-      .images .image {
+      .image .inner-image {
         height: 200px;
       }
     }

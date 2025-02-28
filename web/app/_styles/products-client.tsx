@@ -17,13 +17,13 @@ export const ProductsStyles = styled(motion.div)`
       background-color: #fff;
       border-radius: 20px;
       padding: 5px;
-      .images {
+      .image {
         border-radius: 16px;
         .ant-image {
           min-width: 100%;
           border-radius: 16px;
           overflow: hidden;
-          .image {
+          .inner-image {
             height: 100px;
             overflow: hidden;
             display: flex;
@@ -58,7 +58,7 @@ export const ProductsStyles = styled(motion.div)`
       padding-inline: 0;
       .card {
         width: calc(50% - 10px);
-        .images .image {
+        .image .inner-image {
           height: 200px;
         }
       }

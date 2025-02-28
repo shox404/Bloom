@@ -23,6 +23,7 @@ export type Category = {
 
 export type Product = {
   id?: string;
+  amount: number;
   title: string;
   image: string;
   price: number;
