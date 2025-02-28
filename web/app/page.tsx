@@ -3,24 +3,17 @@
 import { CategoryCard, Main } from "./_styles/products";
 import { Title } from "./_styles/texts";
 import { Category } from "./types";
-import { Block, Navbar } from "./_styles/elements";
+import { Block } from "./_styles/elements";
 import { useGetCategoryQuery } from "./_lib/services/category";
 import { useAppSelector } from "./_lib/hooks";
-import { AppButton } from "./_styles/form";
 import { useRouter } from "next/navigation";
+import { divider } from "./utils";
 import AppImage from "./_components/image";
-import Image from "next/image";
+import MainNavbar from "./_components/navbar";
 
 export default function Home() {
   const { category } = useAppSelector((state) => state.category);
   const router = useRouter();
-
-  const divider = (array: Category[]) => {
-    const part = Math.ceil(array.length / 2);
-    const first = array.slice(0, part);
-    const second = array.slice(part, array.length);
-    return [first, second];
-  };
 
   useGetCategoryQuery();
 
@@ -30,12 +23,7 @@ export default function Home() {
 
   return (
     <Main>
-      <Navbar>
-        <div className="logo">
-          <Image src={"/logo.png"} alt="*" width={200} height={200}/>
-        </div>
-        <AppButton>Cart</AppButton>
-      </Navbar>
+      <MainNavbar />
       <div className="blocks">
         {divider(category).map((list, index) => (
           <Block key={index}>

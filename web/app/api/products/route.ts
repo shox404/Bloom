@@ -18,16 +18,15 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category");
-
-    if (!category) {
-      return reply({ message: "Category is required" }, 400);
+    let mainQ = query(collection(db, "products"));
+    if (category) {
+      mainQ = query(
+        collection(db, "products"),
+        where("category", "==", category)
+      );
     }
-    const q = query(
-      collection(db, "products"),
-      where("category", "==", category)
-    );
-    const querySnapshot = await getDocs(q);
-    const products = querySnapshot.docs.map((doc) => ({
+    const snapshot = await getDocs(mainQ);
+    const products = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));

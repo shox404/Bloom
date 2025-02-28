@@ -4,15 +4,6 @@ export const Main = styled.main`
   background-color: #ebeaef;
   min-height: 100dvh;
   padding: 10px;
-  .logo {
-    width: 70px;
-    position: relative;
-    img {
-      height: 40px;
-      object-fit: cover ;
-      border-radius: 16px;
-    }
-  }
   .blocks {
     margin-block: 20px;
     display: flex;

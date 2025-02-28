@@ -18,3 +18,10 @@ export const categoryOptions = (array: Category[]) => {
 };
 
 export const format = (value: number) => Number(value).toLocaleString();
+
+export const divider = (array: Category[]) => {
+  const part = Math.ceil(array.length / 2);
+  const first = array.slice(0, part);
+  const second = array.slice(part, array.length);
+  return [first, second];
+};

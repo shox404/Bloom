@@ -2,14 +2,16 @@
 
 import AppImage from "@/app/_components/image";
 import Tooltip from "@/app/_components/tooltip";
+import MainNavbar from "@/app/_components/navbar";
 import { useAppSelector } from "@/app/_lib/hooks";
 import { useGetProductByCategoryQuery } from "@/app/_lib/services/products";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { Text, Title } from "@/app/_styles/texts";
-import { Br, Inline, Navbar } from "@/app/_styles/elements";
+import { Text } from "@/app/_styles/texts";
+import { Br } from "@/app/_styles/elements";
 import { format } from "@/app/utils";
 import { ProductsStyles } from "@/app/_styles/products-client";
+import { AppButton } from "@/app/_styles/form";
 
 export default function Products() {
   const { category } = useParams();
@@ -19,9 +21,7 @@ export default function Products() {
 
   return (
     <ProductsStyles>
-      <Navbar>
-        <Title>Bloom</Title>
-      </Navbar>
+      <MainNavbar />
       <div className="products">
         {productsByCategory.map((item, index) => (
           <motion.div
@@ -36,18 +36,15 @@ export default function Products() {
               <AppImage image={item.image} />
             </div>
             <div className="footer">
-              <Title>
+              <Text>
                 <Tooltip>{item.title}</Tooltip>
-              </Title>
+              </Text>
               <Br px={5} />
-              <Inline y="center">
-                <Text>Price</Text>
-                <Text> $ {format(item.price)}</Text>
-              </Inline>
+              <Text>
+                <Tooltip>$ {format(item.price)}</Tooltip>
+              </Text>
               <Br px={5} />
-              <Inline y="end">
-                <Text>{item.category}</Text>
-              </Inline>
+              <AppButton>Order</AppButton>
             </div>
           </motion.div>
         ))}

@@ -35,7 +35,7 @@ export const AppImagePreview = styled.img`
 `;
 
 export const Navbar = styled.nav`
-  padding: 25px;
+  padding: 10px;
   border-radius: 20px;
   height: 70px;
   background-color: #fff;
@@ -45,12 +45,22 @@ export const Navbar = styled.nav`
   justify-content: space-between;
   button {
     height: 45px;
+    border-radius: 12px;
+    margin-inline: 3px;
+  }
+  .logo {
+    width: 100px;
+    position: relative;
+    img {
+      height: 50px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
   }
   @media screen and (max-width: 480px) {
     margin-inline: 0px;
     width: 100%;
     height: auto;
-    padding: 5px;
     flex-wrap: wrap;
     button,
     .ant-input-affix-wrapper {
@@ -62,6 +72,15 @@ export const Navbar = styled.nav`
       width: 100%;
       .ant-input-affix-wrapper {
         width: 100%;
+      }
+    }
+    .logo {
+      width: 70px;
+      position: relative;
+      img {
+        height: 40px;
+        object-fit: cover;
+        border-radius: 16px;
       }
     }
   }
