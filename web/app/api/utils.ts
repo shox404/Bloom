@@ -9,7 +9,7 @@ export const reply = (
 };
 
 export async function verify(request: NextRequest): Promise<void> {
-  const token = request.cookies.get("admin-token")?.value as string;
+  const token = await request.cookies.get("admin-token")?.value as string;
   if (!token) throw reply({ msg: "Unauthorised!" }, 401);
   try {
     jwt.verify(token, process.env.JWT_SECRET_ADMIN!);

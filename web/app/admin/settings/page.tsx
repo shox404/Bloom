@@ -73,14 +73,9 @@ export default function Settings() {
       },
       {
         label: (
-          <Popconfirm
-            title="Delete?"
-            onConfirm={() => deleteCategory({ id: data.id as string })}
-          >
-            <DropItem onClick={() => null}>
-              <DeleteOutlined /> Delete
-            </DropItem>
-          </Popconfirm>
+          <DropItem onClick={() => deleteCategory(data.id as string)}>
+            <DeleteOutlined /> Delete
+          </DropItem>
         ),
         key: "1",
       },

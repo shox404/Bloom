@@ -18,7 +18,7 @@ export const productsApi = api.injectEndpoints({
       query: (body) => ({ url: "/products", method: "POST", body }),
     }),
     editProduct: build.mutation<Product, Product>({
-      query: (body) => ({ url: `/products/${body.id}`, method: "PUT", body }),
+      query: (body) => ({ url: `/products`, method: "PUT", body }),
     }),
     deleteProduct: build.mutation<
       { id: string; image: string },
