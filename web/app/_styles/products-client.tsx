@@ -2,15 +2,15 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
 export const ProductsStyles = styled(motion.div)`
-  padding: 20px;
-  background-color: #ebeaef;
   min-height: 100dvh;
+  margin: 0;
   .products {
-    margin-top: 20px;
+    margin: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: start;
+    padding-inline: 10px;
     gap: 10px;
     .card {
       width: 200px;
@@ -53,7 +53,6 @@ export const ProductsStyles = styled(motion.div)`
     }
   }
   @media screen and (max-width: 480px) {
-    padding: 10px;
     .products {
       padding-inline: 0;
       .card {

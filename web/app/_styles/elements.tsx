@@ -36,13 +36,16 @@ export const AppImagePreview = styled.img`
 
 export const Navbar = styled.nav`
   padding: 10px;
-  border-radius: 20px;
   height: 70px;
-  background-color: #fff;
-  box-shadow: 0 0 10px 5px #e3e3e3;
+  background-color: #f0ece9;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 1;
   button {
     height: 45px;
     border-radius: 12px;

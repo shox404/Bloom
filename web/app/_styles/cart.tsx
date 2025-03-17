@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 
 export const CartStyles = styled.div`
-  padding: 10px;
+  height: 100dvh;
   .products {
-    margin-block: 20px;
+    margin: 15px;
     .card {
       margin-top: 10px;
       display: flex;
@@ -44,6 +44,18 @@ export const CartStyles = styled.div`
           height: 35px;
         }
       }
+    }
+  }
+  .bottom {
+    position: fixed;
+    bottom: 0;
+    background-color: #f0ece9;
+    width: 100%;
+    padding: 10px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    button {
+      width: 100%;
     }
   }
 `;

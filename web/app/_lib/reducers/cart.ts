@@ -28,6 +28,9 @@ const cart = createSlice({
     REMOVE_COUNT: (state, { payload }) => {
       const index = state.cart.findIndex((e) => e.id == payload);
       state.cart[index].amount -= 1;
+      if (state.cart[index].amount < 1) {
+        state.cart.splice(index, 1);
+      }
     },
   },
   extraReducers(builder) {
