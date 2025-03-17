@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 
 export const Main = styled.main`
-  background-color: #ebeaef;
   min-height: 100dvh;
-  padding: 10px;
   .blocks {
-    margin-block: 20px;
+    padding: 15px;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -21,6 +19,7 @@ export const CategoryCard = styled.div`
   padding: 5px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   img {
     border-radius: 1.7rem;
   }

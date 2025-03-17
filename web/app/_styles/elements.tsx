@@ -34,7 +34,7 @@ export const AppImagePreview = styled.img`
   object-fit: cover;
 `;
 
-export const Navbar = styled.nav`
+export const ClientNavbar = styled.nav`
   padding: 10px;
   height: 70px;
   background-color: #f0ece9;
@@ -46,6 +46,58 @@ export const Navbar = styled.nav`
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   z-index: 1;
+  button {
+    height: 45px;
+    border-radius: 12px;
+    margin-inline: 3px;
+  }
+  .logo {
+    width: 100px;
+    position: relative;
+    img {
+      height: 50px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    margin-inline: 0px;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    button,
+    .ant-input-affix-wrapper {
+      height: 40px;
+      padding: 10px 15px;
+      border-radius: 16px;
+    }
+    .line {
+      width: 100%;
+      .ant-input-affix-wrapper {
+        width: 100%;
+      }
+    }
+    .logo {
+      width: 70px;
+      position: relative;
+      img {
+        height: 40px;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+    }
+  }
+`;
+
+export const Navbar = styled.nav`
+  padding: 10px;
+  border-radius: 20px;
+  height: 70px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 5px #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   button {
     height: 45px;
     border-radius: 12px;
