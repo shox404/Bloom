@@ -8,4 +8,11 @@ export const SignStyles = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
+  input {
+    background-color: #ffffff !important;
+}
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
 `;

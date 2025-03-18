@@ -17,8 +17,8 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = getCookie("admin-token");
-    if (!token || token === "") router.push("/admin-login");
+    const token = getCookie("user_token");
+    if (!token || token === "") router.push("/sign");
   }, [router]);
 
   useGetCategoryQuery();

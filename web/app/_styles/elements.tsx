@@ -5,8 +5,8 @@ export const Label = styled.label`
 `;
 
 export const Addition = styled.div`
-  height: 40px;
-  border-radius: 18px;
+  height: 45px;
+  border-radius: 10px;
   padding-inline: 10px;
   background-color: #ffffff;
   display: flex;
