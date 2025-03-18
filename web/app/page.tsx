@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { CategoryCard, Main } from "./_styles/products";
 import { Title } from "./_styles/texts";
 import { Block } from "./_styles/elements";
@@ -9,10 +10,16 @@ import { useRouter } from "next/navigation";
 import { divider } from "./utils";
 import AppImage from "./_components/image";
 import MainNavbar from "./_components/navbar";
+import { getCookie } from "./_utils/cookie";
 
 export default function Home() {
   const { category } = useAppSelector((state) => state.category);
   const router = useRouter();
+
+  useEffect(() => {
+    const token = getCookie("admin-token");
+    if (!token || token === "") router.push("/admin-login");
+  }, [router]);
 
   useGetCategoryQuery();
 
