@@ -2,7 +2,7 @@
 
 import FormItem from "@/app/_components/form-item";
 import Loader from "@/app/_components/loader";
-import { Divider, Dropdown, Flex, Form, List, message, Popconfirm } from "antd";
+import { Divider, Dropdown, Flex, Form, List, message } from "antd";
 import { Styles } from "@/app/_styles/admin/settings";
 import { Text, Title } from "@/app/_styles/texts";
 import { AppButton, AppInput, AppPassword } from "@/app/_styles/form";
