@@ -18,6 +18,7 @@ export async function POST(request: NextRequest) {
   await verify(request);
   const cookieStore = await cookies();
   const { name, password }: AdminData = await request.json();
+  console.log(name);
   if (!name || !password) return reply({ msg: "Enter details!" }, 400);
   const data = (await getDoc(doc(db, "app", "admin"))).data() as AdminData;
   const compare = await bcrypt.compare(password, data.password);
